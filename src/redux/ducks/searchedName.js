@@ -1,4 +1,3 @@
-
 export const SET_SEARCHED_NAME = 'SET_SEARCHED_NAME';
 
 const initialState = {
@@ -18,6 +17,5 @@ const reducer = (state = initialState, action) => {
 }
 
 export const setSearchedName = searchedName => ({type: SET_SEARCHED_NAME, searchedName})
-
 
 export default reducer;

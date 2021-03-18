@@ -25,17 +25,9 @@ const MainPage = () => {
 
     }, []);
 
-    const checkValidName = () => {
+    const checkValidName = () => setValid(searchEmployer(searchedNameSelector));
 
-        setValid(searchEmployer(searchedNameSelector));
-
-    };
-
-    const searchEmployer = (name) => {
-
-        return employersSelector.includes(name);
-
-    };
+    const searchEmployer = (name) => employersSelector.includes(name);
 
     const OnSearchClickHandler = () => {
         checkValidName();

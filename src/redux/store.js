@@ -1,12 +1,10 @@
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import {applyMiddleware, compose, createStore} from 'redux';
 import employersReducer from "./ducks/index"
 import createSagaMiddleware from 'redux-saga';
-
 import {watchFetchEmployers} from "./ducks/employers";
 import {watchFetchSubordinates} from "./ducks/subordinates";
 
 const rootReducer = employersReducer;
-
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -21,8 +19,8 @@ const createAppStore = () => {
     sagaMiddleware.run(watchFetchSubordinates);
 
     return store;
-}
 
+}
 
 export const appStore = createAppStore();
 

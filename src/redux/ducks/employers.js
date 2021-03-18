@@ -23,17 +23,12 @@ const reducer = (state = initialState, action) => {
 }
 
 //action creators
+export const fetchEmployersList = () => ({type: FETCHED_EMPLOYERS});
 
-export const fetchEmployersList = () => {
-    return {type: FETCHED_EMPLOYERS}
-
-}
 
 const setEmployersList = employers => ({type: SET_EMPLOYERS, employers});
 
-const requestEmployersError = () => {
-    return {type: REQUESTED_EMPLOYERS_FAILED};
-};
+const requestEmployersError = () => ({type: REQUESTED_EMPLOYERS_FAILED});
 
 export function* watchFetchEmployers() {
     yield takeEvery(FETCHED_EMPLOYERS, fetchEmployersAsync);

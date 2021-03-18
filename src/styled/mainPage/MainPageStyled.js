@@ -41,6 +41,7 @@ const StyledComponents = {
     `
 }
 export default StyledComponents;
+
 /*
 const MainContainer = styled.div`
   text-align: center;

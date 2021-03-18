@@ -26,15 +26,11 @@ const reducer = (state = initialState, action) => {
 }
 
 //action creators
-export const fetchSubordinates = (name) => {
-    return {type: FETCHED_SUBORDINATES, name}
+export const fetchSubordinates = (name) => ({type: FETCHED_SUBORDINATES, name});
 
-}
 const setSubordinatesList = subordinatesData => ({type: SET_SUBORDINATES, subordinatesData});
 
-const requestSubordinatesError = () => {
-    return {type: REQUESTED_SUBORDINATES_FAILED};
-};
+const requestSubordinatesError = () => ({type: REQUESTED_SUBORDINATES_FAILED});
 
 export function* watchFetchSubordinates() {
     yield takeEvery(FETCHED_SUBORDINATES, fetchSubordinatesAsync);
@@ -52,7 +48,7 @@ function* fetchSubordinatesAsync(action) {
     } catch (error) {
         yield put(requestSubordinatesError());
     }
-}
 
+}
 
 export default reducer;
