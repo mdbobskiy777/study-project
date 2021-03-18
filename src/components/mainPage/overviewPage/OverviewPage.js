@@ -1,10 +1,10 @@
-import React, {useEffect} from "react"
-import styled from "styled-components"
-import 'bootstrap/dist/css/bootstrap.min.css'
-import {ListGroup} from "react-bootstrap";
-import {useDispatch, useSelector} from "react-redux";
-import {useParams} from "react-router";
-import {fetchSubordinates} from "../../../redux/employersReducer";
+import React, {useEffect} from 'react';
+import styled from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {ListGroup} from 'react-bootstrap';
+import {useDispatch, useSelector} from 'react-redux';
+import {useParams} from 'react-router';
+import {fetchSubordinates} from '../../../redux/employersReducer';
 
 const MainContainer = styled.div`
   text-align: center;
@@ -32,14 +32,14 @@ const MyDiv = styled.div`
   font-size: 1.25em;
 `
 const OverviewPage = () => {
-    const employerDataSelector = useSelector(state => state.employersReducer.employerData)
-    const dispatch = useDispatch()
-    const paramsName = useParams()
+    const employerDataSelector = useSelector(state => state.employersReducer.employerData);
+    const dispatch = useDispatch();
+    const paramsName = useParams();
 
     useEffect(() => {
-        if (paramsName.name) dispatch(fetchSubordinates(paramsName.name))
+        if (paramsName.name) dispatch(fetchSubordinates(paramsName.name));
 
-    }, [paramsName.name])
+    }, [paramsName.name]);
 
     return (
         <MainContainer>
@@ -53,4 +53,4 @@ const OverviewPage = () => {
         </MainContainer>
     )
 }
-export default OverviewPage
+export default OverviewPage;

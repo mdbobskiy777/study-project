@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react"
-import styled from "styled-components"
+import React, {useEffect, useState} from 'react'
+import styled from 'styled-components'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Button} from "react-bootstrap";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchEmployersList, setSearchedName} from "../../redux/employersReducer";
-import {useHistory} from "react-router";
+import {Button} from 'react-bootstrap';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchEmployersList, setSearchedName} from '../../redux/employersReducer';
+import {useHistory} from 'react-router';
 
 const MainContainer = styled.div`
   text-align: center;
@@ -35,11 +35,11 @@ const MyBtn = styled(Button)`
   margin: 5px;
 `
 const MainPage = () => {
-    const employersSelector = useSelector(state => state.employersReducer.employers)
+    const employersSelector = useSelector(state => state.employersReducer.employers);
 
-    const searchedNameSelector = useSelector(state => state.employersReducer.searchedName)
+    const searchedNameSelector = useSelector(state => state.employersReducer.searchedName);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const [isValidName, setValid] = useState(false);
     const [errorShowing, setErrorShowing] = useState(false);
@@ -48,31 +48,32 @@ const MainPage = () => {
 
     useEffect(() => {
 
-        dispatch(fetchEmployersList())
+        dispatch(fetchEmployersList());
 
-    }, [])
+    }, []);
 
     const checkValidName = () => {
 
-        setValid(searchEmployer(searchedNameSelector))
+        setValid(searchEmployer(searchedNameSelector));
 
-    }
+    };
 
     const searchEmployer = (name) => {
 
-        return employersSelector.includes(name)
+        return employersSelector.includes(name);
 
-    }
+    };
+
     const OnSearchClickHandler = () => {
-        checkValidName()
-        if (isValidName) history.push(`/employers/${searchedNameSelector}`)
-        else setErrorShowing(true)
+        checkValidName();
+        if (isValidName) history.push(`/employers/${searchedNameSelector}`);
+        else setErrorShowing(true);
     }
     return (
         <MainContainer>
             <MyTitle>Enter the employee name</MyTitle>
             <SearchFieldContainer>
-                <MyInput type="text" placeholder="Enter name here" onChange={(e) => {
+                <MyInput type='text' placeholder='Enter name here' onChange={(e) => {
                     setErrorShowing(false)
                     dispatch(setSearchedName(e.target.value))
                 }}/>
@@ -84,4 +85,4 @@ const MainPage = () => {
 
 }
 
-export default MainPage
+export default MainPage;

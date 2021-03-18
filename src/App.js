@@ -1,7 +1,7 @@
-import {Switch} from "react-router"
-import {Route} from "react-router"
-import MainPage from "./components/mainPage/MainPage";
-import OverviewPage from "./components/mainPage/overviewPage/OverviewPage";
+import {Switch} from 'react-router';
+import {Route} from 'react-router';
+import MainPage from './components/mainPage/MainPage';
+import OverviewPage from './components/mainPage/overviewPage/OverviewPage';
 
 function App() {
     return (
@@ -12,7 +12,7 @@ function App() {
                 <Route path={'*'} render={() => <div>404 NOT FOUND</div>}/>
             </Switch>
         </>
-    )
+    );
 }
 
 export default App;
