@@ -5,6 +5,7 @@ import {fetchEmployersList} from '../../redux/ducks/employers';
 import {useHistory} from 'react-router';
 import StyledComponents from "../../../src/styled/mainPage/MainPageStyled"
 import {setSearchedName} from "../../redux/ducks/searchedName";
+import {Col, Container, Row} from "react-bootstrap";
 
 
 const MainPage = () => {
@@ -35,23 +36,34 @@ const MainPage = () => {
         else setErrorShowing(true);
     }
     return (
-        <StyledComponents.MainContainer>
-            <StyledComponents.MyTitle>Enter the employee name</StyledComponents.MyTitle>
-            <StyledComponents.SearchFieldContainer>
-                <StyledComponents.MyInput type='text' placeholder='Enter name here' onChange={(e) => {
-                    setErrorShowing(false)
-                    dispatch(setSearchedName(e.target.value))
-                }}/>
-                <StyledComponents.MyBtn onClick={() => OnSearchClickHandler()}>Search</StyledComponents.MyBtn>
-            </StyledComponents.SearchFieldContainer>
-            {(errorShowing) ? <StyledComponents.MyErrorDiv>Wrong employer name! Please enter correct
-                name</StyledComponents.MyErrorDiv> : null}
-            <StyledComponents.MyUL>
-                {(employersSelector) ? employersSelector.map((e, i) => {
-                    return <StyledComponents.MyLI key={i}>{e}</StyledComponents.MyLI>
-                }) : <div>Haven`t data to show</div>}
-            </StyledComponents.MyUL>
-        </StyledComponents.MainContainer>
+        <Container>
+            <StyledComponents.MainContainer>
+                <Row xl={'12'} lg={'10'} md={'8'} sm={'8'} xs={`6`}>
+                    <Col xl={'12'} lg={'12'} md={'12'} sm={'12'} xs={`12`}>
+                        <StyledComponents.MyTitle>Enter the employee name</StyledComponents.MyTitle>
+                        <StyledComponents.SearchFieldContainer>
+                            <StyledComponents.MyInput type='text' placeholder='Enter name here' onChange={(e) => {
+                                setErrorShowing(false)
+                                dispatch(setSearchedName(e.target.value))
+                            }}/>
+                            <StyledComponents.MyBtn
+                                onClick={() => OnSearchClickHandler()}>Search</StyledComponents.MyBtn>
+                        </StyledComponents.SearchFieldContainer>
+                        {(errorShowing) ? <StyledComponents.MyErrorDiv>Wrong employer name! Please enter correct
+                            name</StyledComponents.MyErrorDiv> : null}
+                    </Col>
+                </Row>
+                <Row xl={'12'} lg={'10'} md={'8'} sm={'8'} xs={`6`}>
+                    <Col xl={'12'} lg={'12'} md={'12'} sm={'12'} xs={`12`}>
+                        <StyledComponents.MyUL>
+                            {(employersSelector) ? employersSelector.map((e, i) => {
+                                return <StyledComponents.MyLI key={i}>{e}</StyledComponents.MyLI>
+                            }) : <div>Haven`t data to show</div>}
+                        </StyledComponents.MyUL>
+                    </Col>
+                </Row>
+            </StyledComponents.MainContainer>
+        </Container>
     )
 
 }

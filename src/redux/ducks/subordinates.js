@@ -39,7 +39,6 @@ export function* watchFetchSubordinates() {
 function* fetchSubordinatesAsync(action) {
 
     try {
-        debugger
         const subordinatesData = yield call(() => {
                 return EmployersAPI.getSubordinates(action.name);
             }
