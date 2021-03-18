@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Button} from 'react-bootstrap';
+import {Button, ListGroup} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchEmployersList, setSearchedName} from '../../redux/employersReducer';
 import {useHistory} from 'react-router';
@@ -34,6 +34,17 @@ const SearchFieldContainer = styled.div`
 const MyBtn = styled(Button)`
   margin: 5px;
 `
+
+const MyUL = styled(ListGroup)`
+  margin: 10px auto;
+  padding: 10px;
+  background: white;
+`
+const MyLI = styled(ListGroup.Item)`
+  width: 100%;
+  margin: 0 auto;
+`
+
 const MainPage = () => {
     const employersSelector = useSelector(state => state.employersReducer.employers);
 
@@ -80,6 +91,11 @@ const MainPage = () => {
                 <MyBtn onClick={() => OnSearchClickHandler()}>Search</MyBtn>
             </SearchFieldContainer>
             {(errorShowing) ? <MyErrorDiv>Wrong employer name! Please enter correct name</MyErrorDiv> : null}
+            <MyUL>
+                {(employersSelector) ? employersSelector.map((e, i) => {
+                    return <MyLI key={i}>{e}</MyLI>
+                }) : <div>Haven`t data to show</div>}
+            </MyUL>
         </MainContainer>
     )
 
