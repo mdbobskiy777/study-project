@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchEmployersList, setSearchedName} from '../../redux/employersReducer';
+import {fetchEmployersList} from '../../redux/ducks/employers';
 import {useHistory} from 'react-router';
 import StyledComponents from "../../../src/styled/mainPage/MainPageStyled"
+import {setSearchedName} from "../../redux/ducks/searchedName";
 
 
 const MainPage = () => {
-    const employersSelector = useSelector(state => state.employersReducer.employers);
+    const employersSelector = useSelector(state => state.employers.employers);
 
-    const searchedNameSelector = useSelector(state => state.employersReducer.searchedName);
+    const searchedNameSelector = useSelector(state => state.searchedName.searchedName);
 
     const dispatch = useDispatch();
 

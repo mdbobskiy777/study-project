@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router';
-import {fetchSubordinates} from '../../../redux/employersReducer';
+import {fetchSubordinates} from '../../../redux/ducks/subordinates';
 import OverviewPageStyled from "../../../styled/mainPage/overviewPage/OverviewPageStyled"
 
 const OverviewPage = () => {
 
-    const employerDataSelector = useSelector(state => state.employersReducer.employerData);
+    const employerDataSelector = useSelector(state => state.subordinates.employerData);
     const dispatch = useDispatch();
     const paramsName = useParams();
 
