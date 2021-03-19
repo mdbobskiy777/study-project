@@ -36,10 +36,10 @@ var MainPage = function () {
                 react_1.default.createElement(react_bootstrap_1.Col, { xl: "12", lg: "12", md: "12", sm: "12", xs: "12" },
                     react_1.default.createElement(MainPageStyled_1.default.MyTitle, null, "Enter the employee name"),
                     react_1.default.createElement(MainPageStyled_1.default.SearchFieldContainer, null,
-                        react_1.default.createElement(MainPageStyled_1.default.MyInput, { type: 'text', placeholder: 'Enter name here', onChange: function (e) {
-                                setErrorShowing(false);
-                                dispatch(searchedName_1.setSearchedName(e.target.value));
-                            } }),
+                        react_1.default.createElement(MainPageStyled_1.default.MyInput, { type: "text", placeholder: "Enter name here", onChange: function (e) {
+                            setErrorShowing(false);
+                            dispatch(searchedName_1.setSearchedName(e.target.value));
+                        } }),
                         react_1.default.createElement(MainPageStyled_1.default.MyBtn, { onClick: function () { return OnSearchClickHandler(); } }, "Search")),
                     (errorShowing) && (react_1.default.createElement(MainPageStyled_1.default.MyErrorDiv, null, "Wrong employer name! Please enter correct name")))),
             react_1.default.createElement(react_bootstrap_1.Row, { xl: "12", lg: "10", md: "8", sm: "8", xs: "6" },

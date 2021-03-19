@@ -1,9 +1,9 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
-import { EmployersAPI } from '../../api/api';
+import { call, put, takeEvery } from "redux-saga/effects";
+import { EmployersAPI } from "../../api/api";
 
-export const SET_EMPLOYERS = 'SET_EMPLOYERS';
-export const REQUESTED_EMPLOYERS_FAILED = 'REQUESTED_EMPLOYERS_FAILED';
-export const FETCHED_EMPLOYERS = 'FETCHED_EMPLOYERS';
+export const SET_EMPLOYERS = "SET_EMPLOYERS";
+export const REQUESTED_EMPLOYERS_FAILED = "REQUESTED_EMPLOYERS_FAILED";
+export const FETCHED_EMPLOYERS = "FETCHED_EMPLOYERS";
 
 const initialState = {
     employers: []
@@ -12,15 +12,15 @@ const initialState = {
 const reducer = (state = initialState, action: { type: any; employers: any; }) => {
 
     switch (action.type) {
-        case SET_EMPLOYERS :
-            return {
-                ...state, employers: action.employers
-            };
-        default:
-            return state;
+    case SET_EMPLOYERS :
+        return {
+            ...state, employers: action.employers
+        };
+    default:
+        return state;
     }
 
-}
+};
 
 //action creators
 export const fetchEmployersList = () => ({type: FETCHED_EMPLOYERS});
@@ -35,9 +35,10 @@ export function* watchFetchEmployers() {
 
 function* fetchEmployersAsync() {
     try {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const employers = yield call(() => {
-            return EmployersAPI.getEmployers()
+            return EmployersAPI.getEmployers();
         });
         yield put(setEmployersList(employers));
     } catch (error) {

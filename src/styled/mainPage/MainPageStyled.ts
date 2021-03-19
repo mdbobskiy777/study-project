@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Button, ListGroup } from 'react-bootstrap';
+import styled from "styled-components";
+import { Button, ListGroup } from "react-bootstrap";
 
 const StyledComponents = {
     MainContainer: styled.div`
@@ -46,5 +46,5 @@ const StyledComponents = {
       width: 100%;
       margin: 0 auto;
     `
-}
+};
 export default StyledComponents;

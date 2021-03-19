@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { ListGroup } from 'react-bootstrap';
+import styled from "styled-components";
+import { ListGroup } from "react-bootstrap";
 
 const OverviewPageStyled = {
     MainContainer: styled.div`
@@ -34,5 +34,5 @@ const OverviewPageStyled = {
       margin: 5px auto;
       font-size: 1.25em;
     `
-}
+};
 export default OverviewPageStyled;
