@@ -1,8 +1,8 @@
-import {applyMiddleware, compose, createStore} from 'redux';
-import employersReducer from "./ducks/index"
+import { applyMiddleware, compose, createStore } from 'redux';
+import employersReducer from './ducks/index';
 import createSagaMiddleware from 'redux-saga';
-import {watchFetchEmployers} from "./ducks/employers";
-import {watchFetchSubordinates} from "./ducks/subordinates";
+import { watchFetchEmployers } from './ducks/employers';
+import { watchFetchSubordinates } from './ducks/subordinates';
 
 const rootReducer = employersReducer;
 

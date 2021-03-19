@@ -5,13 +5,11 @@ const instance = axios.create({
 });
 
 export const EmployersAPI = {
-    getEmployers(){
-
-        return instance.get(``).then(response=>response.data);
+    getEmployers() {
+        return instance.get(``).then(response => response.data);
     },
 
-    getSubordinates(name){
-
-        return instance.get(`${name}/`).then(response=>response.data);
+    getSubordinates(name) {
+        return instance.get(`${name}/`).then(response => response.data);
     }
 }

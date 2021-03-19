@@ -5,15 +5,11 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-
     switch (action.type) {
-
         case SET_SEARCHED_NAME:
             return {...state, searchedName: action.searchedName};
-        default:
-            return state;
+        default: return state;
     }
-
 }
 
 export const setSearchedName = searchedName => ({type: SET_SEARCHED_NAME, searchedName})

@@ -1,18 +1,13 @@
-import {Switch} from 'react-router';
-import {Route} from 'react-router';
-import MainPage from './components/mainPage/MainPage';
-import OverviewPage from './components/mainPage/overviewPage/OverviewPage';
+import { Switch, Route } from 'react-router';
+import Components from '../src/components/index';
 
-function App() {
-    return (
-        <>
-            <Switch>
-                <Route exact path={"/"} render={() => <MainPage/>}/>
-                <Route exact path={"/employers/:name?/"} render={() => <OverviewPage/>}/>
-                <Route path={'*'} render={() => <div>404 NOT FOUND</div>}/>
-            </Switch>
-        </>
-    );
-}
+const App = () =>
+    <>
+        <Switch>
+            <Route exact path={"/"} render={() => <Components.MainPage/>}/>
+            <Route exact path={"/employers/:name?/"} render={() => <Components.OverviewPage/>}/>
+            <Route path={'*'} render={() => <div>404 NOT FOUND</div>}/>
+        </Switch>
+    </>
 
 export default App;

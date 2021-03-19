@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useDispatch, useSelector} from 'react-redux';
-import {useParams} from 'react-router';
-import {fetchSubordinates} from '../../../redux/ducks/subordinates';
-import OverviewPageStyled from "../../../styled/mainPage/overviewPage/OverviewPageStyled"
-import {Col, Container, Row} from "react-bootstrap";
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import { fetchSubordinates } from '../../../redux/ducks/subordinates';
+import OverviewPageStyled from '../../../styled/mainPage/overviewPage/OverviewPageStyled';
+import { Col, Container, Row } from 'react-bootstrap';
 
 const OverviewPage = () => {
 

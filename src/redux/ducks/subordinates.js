@@ -1,5 +1,5 @@
-import {call, put, takeEvery} from "redux-saga/effects";
-import {EmployersAPI} from "../../api/api";
+import { call, put, takeEvery } from "redux-saga/effects";
+import { EmployersAPI } from "../../api/api";
 
 export const SET_SUBORDINATES = 'GET_SUBORDINATES';
 export const REQUESTED_SUBORDINATES_FAILED = 'REQUESTED_SUBORDINATES_FAILED';

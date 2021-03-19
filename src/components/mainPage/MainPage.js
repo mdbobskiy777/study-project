@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import {useDispatch, useSelector} from 'react-redux';
-import {fetchEmployersList} from '../../redux/ducks/employers';
-import {useHistory} from 'react-router';
-import StyledComponents from "../../../src/styled/mainPage/MainPageStyled"
-import {setSearchedName} from "../../redux/ducks/searchedName";
-import {Col, Container, Row} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { Col, Container, Row } from "react-bootstrap";
+
+import { fetchEmployersList } from '../../redux/ducks/employers';
+import StyledComponents from '../../../src/styled/mainPage/MainPageStyled';
+import { setSearchedName } from '../../redux/ducks/searchedName';
 
 const MainPage = () => {
     const employersSelector = useSelector(state => state.employers.employers);
@@ -32,14 +33,15 @@ const MainPage = () => {
 
     const OnSearchClickHandler = () => {
         checkValidName();
-        if (isValidName) history.push(`/employers/${searchedNameSelector}`);
-        else setErrorShowing(true);
+        if (isValidName) {
+            history.push(`/employers/${searchedNameSelector}`);
+        } else setErrorShowing(true);
     }
     return (
         <Container>
             <StyledComponents.MainContainer>
-                <Row xl={'12'} lg={'10'} md={'8'} sm={'8'} xs={`6`}>
-                    <Col xl={'12'} lg={'12'} md={'12'} sm={'12'} xs={`12`}>
+                <Row xl="12" lg="10" md="8" sm="8" xs="6">
+                    <Col xl="12" lg="12" md="12" sm="12" xs="12">
                         <StyledComponents.MyTitle>Enter the employee name</StyledComponents.MyTitle>
                         <StyledComponents.SearchFieldContainer>
                             <StyledComponents.MyInput type='text' placeholder='Enter name here' onChange={(e) => {
@@ -49,16 +51,20 @@ const MainPage = () => {
                             <StyledComponents.MyBtn
                                 onClick={() => OnSearchClickHandler()}>Search</StyledComponents.MyBtn>
                         </StyledComponents.SearchFieldContainer>
-                        {(errorShowing) ? <StyledComponents.MyErrorDiv>Wrong employer name! Please enter correct
-                            name</StyledComponents.MyErrorDiv> : null}
+                        {(errorShowing) && (<StyledComponents.MyErrorDiv>Wrong employer name! Please enter correct
+                                name</StyledComponents.MyErrorDiv>
+                        )}
                     </Col>
                 </Row>
-                <Row xl={'12'} lg={'10'} md={'8'} sm={'8'} xs={`6`}>
-                    <Col xl={'12'} lg={'12'} md={'12'} sm={'12'} xs={`12`}>
+                <Row xl="12" lg="10" md="8" sm="8" xs="6">
+                    <Col xl="12" lg="12" md="12" sm="12" xs="12">
                         <StyledComponents.MyUL>
-                            {(employersSelector) ? employersSelector.map((e, i) => {
-                                return <StyledComponents.MyLI key={i}>{e}</StyledComponents.MyLI>
-                            }) : <div>Haven`t data to show</div>}
+                            {employersSelector ?
+                                employersSelector.map((employee, index) => {
+                                    return <StyledComponents.MyLI key={index}>{employee}</StyledComponents.MyLI>
+                                }) : (
+                                    <div>Haven`t data to show</div>
+                                )}
                         </StyledComponents.MyUL>
                     </Col>
                 </Row>

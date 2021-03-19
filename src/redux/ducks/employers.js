@@ -1,5 +1,5 @@
-import {call, put, takeEvery} from "redux-saga/effects";
-import {EmployersAPI} from "../../api/api";
+import { call, put, takeEvery } from 'redux-saga/effects';
+import { EmployersAPI } from '../../api/api';
 
 export const SET_EMPLOYERS = 'SET_EMPLOYERS';
 export const REQUESTED_EMPLOYERS_FAILED = 'REQUESTED_EMPLOYERS_FAILED';
@@ -24,7 +24,6 @@ const reducer = (state = initialState, action) => {
 
 //action creators
 export const fetchEmployersList = () => ({type: FETCHED_EMPLOYERS});
-
 
 const setEmployersList = employers => ({type: SET_EMPLOYERS, employers});
 
