@@ -1,11 +1,11 @@
-import {call, put, takeEvery} from "redux-saga/effects";
+import {call, put, StrictEffect, takeEvery} from "redux-saga/effects";
 import {EmployersAPI} from "../../api/api";
 
 export const SET_EMPLOYERS = "SET_EMPLOYERS";
 export const REQUESTED_EMPLOYERS_FAILED = "REQUESTED_EMPLOYERS_FAILED";
 export const FETCHED_EMPLOYERS = "FETCHED_EMPLOYERS";
 
-type Employers = Array<string>;
+export type Employers = Array<string>;
 type InitialState = {
     employers: Employers;
 };
@@ -15,7 +15,7 @@ type FetchedEmployersAction = {
 };
 type setEmployersListAction = {
     type:typeof SET_EMPLOYERS,
-    employers:Employers
+    employers:Employers | unknown
 };
 
 const initialState: InitialState = {
@@ -37,20 +37,18 @@ const reducer = (state = initialState,
 //action creators
 export const fetchEmployersList = ():FetchedEmployersAction => ({type: FETCHED_EMPLOYERS});
 
-const setEmployersList = (employers: Employers):setEmployersListAction => ({type: SET_EMPLOYERS, employers});
+const setEmployersList = (employers: Employers | unknown):setEmployersListAction =>
+    ({type: SET_EMPLOYERS, employers});
 
 const requestEmployersError = () => ({type: REQUESTED_EMPLOYERS_FAILED});
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function* watchFetchEmployers() {
+export function* watchFetchEmployers():Generator<StrictEffect>{
     yield takeEvery(FETCHED_EMPLOYERS, fetchEmployersAsync);
 }
 
-function* fetchEmployersAsync() {
+function* fetchEmployersAsync():Generator<StrictEffect> {
     try {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        const employers = yield call(() => {
+        const employers:Employers | unknown = yield call(() => {
             return EmployersAPI.getEmployers();
         });
         yield put(setEmployersList(employers));

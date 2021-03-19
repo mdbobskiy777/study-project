@@ -1,4 +1,4 @@
-import {call, put, takeEvery} from "redux-saga/effects";
+import {call, put, StrictEffect, takeEvery} from "redux-saga/effects";
 import {EmployersAPI} from "../../api/api";
 
 export const SET_SUBORDINATES = "GET_SUBORDINATES";
@@ -46,11 +46,10 @@ const setSubordinatesList = (subordinatesData: Array<string>):SetSubordinatesAct
 
 const requestSubordinatesError = () => ({type: REQUESTED_SUBORDINATES_FAILED});
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function* watchFetchSubordinates() {
+export function* watchFetchSubordinates() :Generator<StrictEffect>{
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    yield takeEvery(FETCHED_SUBORDINATES, fetchSubordinatesAsync);
+    yield takeEvery( FETCHED_SUBORDINATES, fetchSubordinatesAsync);
 }
 
 function* fetchSubordinatesAsync(action: { name: string; }) {
