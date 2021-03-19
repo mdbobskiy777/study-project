@@ -1,16 +1,29 @@
-import { call, put, takeEvery } from "redux-saga/effects";
-import { EmployersAPI } from "../../api/api";
+import {call, put, takeEvery} from "redux-saga/effects";
+import {EmployersAPI} from "../../api/api";
 
 export const SET_EMPLOYERS = "SET_EMPLOYERS";
 export const REQUESTED_EMPLOYERS_FAILED = "REQUESTED_EMPLOYERS_FAILED";
 export const FETCHED_EMPLOYERS = "FETCHED_EMPLOYERS";
 
-const initialState = {
+type Employers = Array<string>;
+type InitialState = {
+    employers: Employers;
+};
+type ActionTypes = typeof SET_EMPLOYERS;
+type FetchedEmployersAction = {
+    type:typeof FETCHED_EMPLOYERS
+};
+type setEmployersListAction = {
+    type:typeof SET_EMPLOYERS,
+    employers:Employers
+};
+
+const initialState: InitialState = {
     employers: []
 };
 
-const reducer = (state = initialState, action: { type: any; employers: any; }) => {
-
+const reducer = (state = initialState,
+    action: { type: ActionTypes; employers: Employers; }):InitialState => {
     switch (action.type) {
     case SET_EMPLOYERS :
         return {
@@ -19,16 +32,16 @@ const reducer = (state = initialState, action: { type: any; employers: any; }) =
     default:
         return state;
     }
-
 };
 
 //action creators
-export const fetchEmployersList = () => ({type: FETCHED_EMPLOYERS});
+export const fetchEmployersList = ():FetchedEmployersAction => ({type: FETCHED_EMPLOYERS});
 
-const setEmployersList = (employers: any) => ({type: SET_EMPLOYERS, employers});
+const setEmployersList = (employers: Employers):setEmployersListAction => ({type: SET_EMPLOYERS, employers});
 
 const requestEmployersError = () => ({type: REQUESTED_EMPLOYERS_FAILED});
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function* watchFetchEmployers() {
     yield takeEvery(FETCHED_EMPLOYERS, fetchEmployersAsync);
 }

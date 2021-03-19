@@ -9,7 +9,7 @@ import {fetchEmployersList} from "../../redux/ducks/employers";
 import StyledComponents from "../../styled/mainPage/MainPageStyled";
 import {setSearchedName} from "../../redux/ducks/searchedName";
 
-const MainPage = () => {
+const MainPage = ():JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const employersSelector = useSelector(state => state.employers.employers);
@@ -48,15 +48,15 @@ const MainPage = () => {
                         <StyledComponents.MyTitle>Enter the employee name</StyledComponents.MyTitle>
                         <StyledComponents.SearchFieldContainer>
                             <StyledComponents.MyInput type='text' placeholder='Enter name here'
-                                onChange={(e: { target: { value: any; }; }) => {
+                                onChange={(e: { target: { value: string; }; }) => {
                                     setErrorShowing(false);
                                     dispatch(setSearchedName(e.target.value));
                                 }}/>
                             <StyledComponents.MyBtn
                                 onClick={() => OnSearchClickHandler()}>Search</StyledComponents.MyBtn>
                         </StyledComponents.SearchFieldContainer>
-                        {(errorShowing) && (<StyledComponents.MyErrorDiv>Wrong employer name! Please enter correct
-                                name</StyledComponents.MyErrorDiv>
+                        {(errorShowing) && (<StyledComponents.MyErrorDiv>
+                                Wrong employer name! Please enter correct name</StyledComponents.MyErrorDiv>
                         )}
                     </Col>
                 </Row>
@@ -64,7 +64,8 @@ const MainPage = () => {
                     <Col xl="12" lg="12" md="12" sm="12" xs="12">
                         <StyledComponents.MyUL>
                             {employersSelector ?
-                                employersSelector.map((employee: any, index: React.Key | null | undefined) => {
+                                employersSelector.map((employee: string,
+                                    index: React.Key | null | undefined) => {
                                     return <StyledComponents.MyLI key={index}>{employee}</StyledComponents.MyLI>;
                                 }) : (
                                     <div>Haven`t data to show</div>

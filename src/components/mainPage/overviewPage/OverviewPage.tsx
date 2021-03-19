@@ -6,15 +6,15 @@ import { fetchSubordinates } from "../../../redux/ducks/subordinates";
 import OverviewPageStyled from "../../../styled/mainPage/overviewPage/OverviewPageStyled";
 import { Col, Container, Row } from "react-bootstrap";
 
-type paramType = {
+type ParamType = {
     name:string
 }
-const OverviewPage = () => {
+const OverviewPage = ():JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const employerDataSelector = useSelector(state => state. subordinates.employerData);
     const dispatch = useDispatch();
-    const paramsName:paramType = useParams();
+    const paramsName:ParamType = useParams();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     useEffect(() => {
@@ -33,15 +33,19 @@ const OverviewPage = () => {
                 <Row xl="12" lg="10" md="8" sm="8" xs="6">
                     <Col xl="12" lg="12" md="12" sm="12" xs="12">
                         <OverviewPageStyled.MyTittle>{paramsName.name}</OverviewPageStyled.MyTittle>
-                        <OverviewPageStyled.MyDiv>{`Direct subordinates: ${employerDataSelector[0]}`}</OverviewPageStyled.MyDiv>
+                        <OverviewPageStyled.MyDiv>
+                            {`Direct subordinates: ${employerDataSelector[0]}`}
+                        </OverviewPageStyled.MyDiv>
                     </Col>
                 </Row>
                 <Row xl="12" lg="10" md="8" sm="8" xs="6">
                     <Col xl="12" lg="12" md="12" sm="12" xs="12">
                         <OverviewPageStyled.MyUL>
                             {(employerDataSelector[1]) ? employerDataSelector[1]["direct-subordinates"].map(
-                                (subordinate: React.Key | null | undefined, index: any) =>
-                                    <OverviewPageStyled.MyLI key={index}>{subordinate}</OverviewPageStyled.MyLI>) :
+                                (subordinate: string , index: React.Key | null | undefined) =>
+                                    <OverviewPageStyled.MyLI key={index}>
+                                        {subordinate}
+                                    </OverviewPageStyled.MyLI>) :
                                 <div>Haven`t subordinates</div>}
                         </OverviewPageStyled.MyUL>
                     </Col>
