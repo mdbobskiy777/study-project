@@ -9,7 +9,7 @@ const initialState = {
     employers: []
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: { type: any; employers: any; }) => {
 
     switch (action.type) {
         case SET_EMPLOYERS :
@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
 //action creators
 export const fetchEmployersList = () => ({type: FETCHED_EMPLOYERS});
 
-const setEmployersList = employers => ({type: SET_EMPLOYERS, employers});
+const setEmployersList = (employers: any) => ({type: SET_EMPLOYERS, employers});
 
 const requestEmployersError = () => ({type: REQUESTED_EMPLOYERS_FAILED});
 
@@ -35,6 +35,7 @@ export function* watchFetchEmployers() {
 
 function* fetchEmployersAsync() {
     try {
+        // @ts-ignore
         const employers = yield call(() => {
             return EmployersAPI.getEmployers()
         });

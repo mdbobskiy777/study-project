@@ -9,7 +9,7 @@ const initialState = {
     employerData: []
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: { type: any; subordinatesData: any; }) => {
 
     switch (action.type) {
 
@@ -26,19 +26,22 @@ const reducer = (state = initialState, action) => {
 }
 
 //action creators
-export const fetchSubordinates = (name) => ({type: FETCHED_SUBORDINATES, name});
+export const fetchSubordinates = (name:string) => ({type: FETCHED_SUBORDINATES, name});
 
-const setSubordinatesList = subordinatesData => ({type: SET_SUBORDINATES, subordinatesData});
+const setSubordinatesList = (subordinatesData: any) => ({type: SET_SUBORDINATES, subordinatesData});
 
 const requestSubordinatesError = () => ({type: REQUESTED_SUBORDINATES_FAILED});
 
 export function* watchFetchSubordinates() {
+    // @ts-ignore
     yield takeEvery(FETCHED_SUBORDINATES, fetchSubordinatesAsync);
 }
 
-function* fetchSubordinatesAsync(action) {
+function* fetchSubordinatesAsync(action: { name: string; }) {
 
     try {
+
+        // @ts-ignore
         const subordinatesData = yield call(() => {
                 return EmployersAPI.getSubordinates(action.name);
             }

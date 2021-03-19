@@ -4,7 +4,7 @@ const initialState = {
     searchedName: ''
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: { type: any; searchedName: any; }) => {
     switch (action.type) {
         case SET_SEARCHED_NAME:
             return {...state, searchedName: action.searchedName};
@@ -12,6 +12,6 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export const setSearchedName = searchedName => ({type: SET_SEARCHED_NAME, searchedName})
+export const setSearchedName = (searchedName:string) => ({type: SET_SEARCHED_NAME, searchedName})
 
 export default reducer;

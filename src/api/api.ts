@@ -9,7 +9,7 @@ export const EmployersAPI = {
         return instance.get(``).then(response => response.data);
     },
 
-    getSubordinates(name) {
+    getSubordinates(name:string) {
         return instance.get(`${name}/`).then(response => response.data);
     }
 }

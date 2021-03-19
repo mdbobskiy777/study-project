@@ -1,5 +1,6 @@
+import React from 'react';
 import { Switch, Route } from 'react-router';
-import Components from '../src/components/index';
+import Components from './components';
 
 const App = () =>
     <>
