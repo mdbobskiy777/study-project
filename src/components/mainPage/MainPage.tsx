@@ -19,7 +19,7 @@ const MainPage = ():JSX.Element => {
 
     const dispatch = useDispatch();
 
-    const [isValidName, setValid] = useState(false);
+    const [isValidName, setValid] = useState(null);
     const [errorShowing, setErrorShowing] = useState(false);
 
     const history = useHistory();
@@ -30,15 +30,37 @@ const MainPage = ():JSX.Element => {
 
     }, []);
 
-    const checkValidName = () => setValid(searchEmployer(searchedNameSelector));
+    useEffect(() => {
+
+        if (isValidName) {
+            history.push(`/employers/${searchedNameSelector}`);
+            setErrorShowing(false);
+            
+        } else if(!isValidName){
+            if(searchedNameSelector===""){
+                setErrorShowing(false);
+            }else {
+                setErrorShowing(true);
+            }
+        }
+
+    }, [isValidName]);
+
+    const checkValidName = () => {
+        // eslint-disable-next-line no-debugger
+        debugger;
+        setValid(searchEmployer(searchedNameSelector));
+    };
 
     const searchEmployer = (name: string) => employersSelector.includes(name);
 
     const OnSearchClickHandler = () => {
+        // eslint-disable-next-line no-debugger
+        debugger;
         checkValidName();
-        if (isValidName) {
+        /* if (isValidName) {
             history.push(`/employers/${searchedNameSelector}`);
-        } else setErrorShowing(true);
+        } else setErrorShowing(true);*/
     };
     return (
         <Container>
@@ -50,6 +72,7 @@ const MainPage = ():JSX.Element => {
                             <StyledComponents.MyInput type='text' placeholder='Enter name here'
                                 onChange={(e: { target: { value: string; }; }) => {
                                     setErrorShowing(false);
+                                    setValid(null);
                                     dispatch(setSearchedName(e.target.value));
                                 }}/>
                             <StyledComponents.MyBtn

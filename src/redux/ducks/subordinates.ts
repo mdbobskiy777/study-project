@@ -5,7 +5,6 @@ export const SET_SUBORDINATES = "GET_SUBORDINATES";
 export const REQUESTED_SUBORDINATES_FAILED = "REQUESTED_SUBORDINATES_FAILED";
 export const FETCHED_SUBORDINATES = "FETCHED_SUBORDINATES";
 
-
 type InitialState = {
     employerData: string | Array<string>
 };
@@ -55,7 +54,6 @@ export function* watchFetchSubordinates() :Generator<StrictEffect>{
 function* fetchSubordinatesAsync(action: { name: string; }) {
 
     try {
-
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const subordinatesData = yield call(() => {
