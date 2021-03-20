@@ -4,9 +4,11 @@ import {EmployersAPI} from "../../api/api";
 export const SET_SUBORDINATES = "GET_SUBORDINATES";
 export const REQUESTED_SUBORDINATES_FAILED = "REQUESTED_SUBORDINATES_FAILED";
 export const FETCHED_SUBORDINATES = "FETCHED_SUBORDINATES";
+export const SET_FETCHING = "SET_FETCHING";
 
 type InitialState = {
-    employerData: string | Array<string>
+    employerData: string | Array<string>,
+    isFetching:boolean
 };
 type ActionsTypes = typeof SET_SUBORDINATES;
 type SetSubordinatesAction = {
@@ -19,18 +21,22 @@ type FetchedSubordinatesAction = {
 };
 
 const initialState: InitialState = {
-    employerData: []
+    employerData: [],
+    isFetching:false
 };
 
 const reducer = (state = initialState,
-    action: { type: ActionsTypes; subordinatesData: Array<string>; }):InitialState => {
+    action: any ):any => {
 
     switch (action.type) {
     case SET_SUBORDINATES:
         return {
             ...state, employerData: action.subordinatesData
         };
-
+    case SET_FETCHING:
+        return {
+            ...state, isFetching:action.isFetching
+        };
     default:
         return state;
     }
@@ -40,7 +46,7 @@ const reducer = (state = initialState,
 export const fetchSubordinates = (name: string):FetchedSubordinatesAction => 
     ({type: FETCHED_SUBORDINATES, name});
 
-const setSubordinatesList = (subordinatesData: Array<string>):SetSubordinatesAction => 
+export const setSubordinatesList = (subordinatesData: Array<string>):SetSubordinatesAction =>
     ({type: SET_SUBORDINATES, subordinatesData});
 
 const requestSubordinatesError = () => ({type: REQUESTED_SUBORDINATES_FAILED});
@@ -51,6 +57,9 @@ export function* watchFetchSubordinates() :Generator<StrictEffect>{
     yield takeEvery( FETCHED_SUBORDINATES, fetchSubordinatesAsync);
 }
 
+export const setFetching = (isFetching:boolean):any =>
+    ({type: SET_FETCHING, isFetching});
+
 function* fetchSubordinatesAsync(action: { name: string; }) {
 
     try {
@@ -60,6 +69,7 @@ function* fetchSubordinatesAsync(action: { name: string; }) {
             return EmployersAPI.getSubordinates(action.name);
         });
         yield put(setSubordinatesList(subordinatesData));
+        yield put(setFetching(false));
     } catch (error) {
         yield put(requestSubordinatesError());
     }

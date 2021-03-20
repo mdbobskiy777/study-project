@@ -45,6 +45,9 @@ const StyledComponents = {
       overflow: hidden;
       width: 100%;
       margin: 0 auto;
+    `,
+    MyIMG: styled.img`
+        width: 20%;
     `
 };
 export default StyledComponents;

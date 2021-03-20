@@ -5,9 +5,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
 import {Col, Container, Row} from "react-bootstrap";
 
-import {fetchEmployersList} from "../../redux/ducks/employers";
+import {fetchEmployersList, setFetching} from "../../redux/ducks/employers";
 import StyledComponents from "../../styled/mainPage/MainPageStyled";
 import {setSearchedName} from "../../redux/ducks/searchedName";
+
+import Preloader from "../../../src/assets/images/preloader.svg";
 
 const MainPage = ():JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -16,6 +18,9 @@ const MainPage = ():JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const searchedNameSelector = useSelector(state => state.searchedName.searchedName);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const isFetchingSelector = useSelector(state => state.employers.isFetching);
 
     const dispatch = useDispatch();
 
@@ -25,17 +30,17 @@ const MainPage = ():JSX.Element => {
     const history = useHistory();
 
     useEffect(() => {
-
+        dispatch(setFetching(true));
         dispatch(fetchEmployersList());
-
     }, []);
 
     useEffect(() => {
 
         if (isValidName) {
             history.push(`/employers/${searchedNameSelector}`);
+            dispatch(setSearchedName(""));
             setErrorShowing(false);
-            
+
         } else if(!isValidName){
             if(searchedNameSelector===""){
                 setErrorShowing(false);
@@ -81,12 +86,15 @@ const MainPage = ():JSX.Element => {
                 <Row xl="12" lg="10" md="8" sm="8" xs="6">
                     <Col xl="12" lg="12" md="12" sm="12" xs="12">
                         <StyledComponents.MyUL>
-                            {employersSelector ?
-                                employersSelector.map((employee: string,
-                                    index: React.Key | null | undefined) => {
-                                    return <StyledComponents.MyLI key={index}>{employee}</StyledComponents.MyLI>;
-                                }) : (
-                                    <div>Haven`t data to show</div>
+                            {(isFetchingSelector) ?
+                                <div>
+                                    <StyledComponents.MyIMG src = {Preloader} />
+                                </div> : (
+                                    employersSelector.map((employee: string,
+                                        index: React.Key | null | undefined) => {
+                                        return <StyledComponents.MyLI key={index}>{employee}</StyledComponents.MyLI>;
+                                    })
+
                                 )}
                         </StyledComponents.MyUL>
                     </Col>

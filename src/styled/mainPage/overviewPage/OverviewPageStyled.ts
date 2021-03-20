@@ -33,6 +33,9 @@ const OverviewPageStyled = {
       overflow: hidden;
       margin: 5px auto;
       font-size: 1.25em;
+    `,
+    MyIMG: styled.img`
+        width: 20%;
     `
 };
 export default OverviewPageStyled;
