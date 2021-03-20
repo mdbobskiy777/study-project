@@ -48,20 +48,15 @@ const MainPage = ():JSX.Element => {
 
     const checkValidName = () => {
         // eslint-disable-next-line no-debugger
-        debugger;
         setValid(searchEmployer(searchedNameSelector));
     };
 
     const searchEmployer = (name: string) => employersSelector.includes(name);
 
     const OnSearchClickHandler = () => {
-        // eslint-disable-next-line no-debugger
-        debugger;
         checkValidName();
-        /* if (isValidName) {
-            history.push(`/employers/${searchedNameSelector}`);
-        } else setErrorShowing(true);*/
     };
+
     return (
         <Container>
             <StyledComponents.MainContainer>
