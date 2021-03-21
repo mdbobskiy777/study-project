@@ -2,14 +2,15 @@ import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import {fetchSubordinates, setFetching, setSubordinatesList} from "../../../redux/ducks/subordinates";
+import { fetchSubordinates, setFetching, setSubordinatesList } from "../../../redux/ducks/subordinates";
 import OverviewPageStyled from "../../../styled/mainPage/overviewPage/OverviewPageStyled";
 import { Col, Container, Row } from "react-bootstrap";
 import Preloader from "../../../assets/images/preloader.svg";
 
 type ParamType = {
     name:string
-}
+};
+
 const OverviewPage = ():JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -17,7 +18,7 @@ const OverviewPage = ():JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const isFetchingSelector = useSelector(state => state. subordinates.isFetching);
-    
+
     const dispatch = useDispatch();
     const paramsName:ParamType = useParams();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -55,12 +56,13 @@ const OverviewPage = ():JSX.Element => {
                 <Row xl="12" lg="10" md="8" sm="8" xs="6">
                     <Col xl="12" lg="12" md="12" sm="12" xs="12">
                         <OverviewPageStyled.MyUL>
-                            {employerDataSelector[1]&&(
+                            {(employerDataSelector[1])?(
                                 employerDataSelector[1]["direct-subordinates"].map(
-                                    (subordinate: string , index: React.Key | null | undefined) =>
+                                    ( subordinate: string , index: React.Key ) =>
                                         <OverviewPageStyled.MyLI key={index}>
                                             {subordinate}
-                                        </OverviewPageStyled.MyLI>))
+                                        </OverviewPageStyled.MyLI>)):
+                                !isFetchingSelector&&<div>Haven`t subordinates</div>
                             }
                             {
                                 isFetchingSelector&&<div>
