@@ -1,15 +1,15 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useHistory} from "react-router";
-import {Col, Container, Row} from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { Col, Container, Row } from 'react-bootstrap';
 
-import {fetchEmployersList, setFetching} from "../redux/ducks/employers";
-import StyledComponents from "../styled/mainPage/MainPageStyled";
-import {setSearchedName} from "../redux/ducks/searchedName";
-import {AppDispatch, RootState} from "../redux/store";
-import Preloader from "../assets/images/preloader.svg";
+import { fetchEmployersList, setFetching } from '../redux/ducks/employers';
+import StyledComponents from '../styled/mainPage/MainPageStyled';
+import { setSearchedName } from '../redux/ducks/searchedName';
+import { AppDispatch, RootState } from '../redux/store';
+import Preloader from '../assets/images/preloader.svg';
 
 const MainPage = ():JSX.Element => {
 
@@ -33,11 +33,11 @@ const MainPage = ():JSX.Element => {
 
         if (isValidName) {
             history.push(`/employers/${searchedNameSelector}`);
-            dispatch(setSearchedName(""));
+            dispatch(setSearchedName(''));
             setErrorShowing(false);
         } else if(!isValidName) {
             setErrorShowing(false);
-            setErrorShowing(searchedNameSelector !== "");
+            setErrorShowing(searchedNameSelector !== '');
         }
 
     }, [isValidName]);

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { ListGroup } from "react-bootstrap";
+import styled from 'styled-components';
+import { ListGroup } from 'react-bootstrap';
 
 const OverviewPageStyled = {
     MainContainer: styled.div`

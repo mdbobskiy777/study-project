@@ -1,10 +1,10 @@
-import {call, put, StrictEffect, takeEvery} from "redux-saga/effects";
-import {EmployersAPI} from "../../api/api";
+import { call, put, StrictEffect, takeEvery } from 'redux-saga/effects';
+import { EmployersAPI } from '../../api/api';
 
-export const SET_SUBORDINATES = "GET_SUBORDINATES";
-export const REQUESTED_SUBORDINATES_FAILED = "REQUESTED_SUBORDINATES_FAILED";
-export const FETCHED_SUBORDINATES = "FETCHED_SUBORDINATES";
-export const SET_FETCHING = "SET_FETCHING";
+export const SET_SUBORDINATES = 'GET_SUBORDINATES';
+export const REQUESTED_SUBORDINATES_FAILED = 'REQUESTED_SUBORDINATES_FAILED';
+export const FETCHED_SUBORDINATES = 'FETCHED_SUBORDINATES';
+export const SET_FETCHING = 'SET_FETCHING';
 
 type InitialState = {
     employerData: string | Array<string>,

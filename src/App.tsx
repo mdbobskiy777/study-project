@@ -1,6 +1,6 @@
-import React from "react";
-import { Switch, Route } from "react-router";
-import Components from "./components";
+import React from 'react';
+import { Switch, Route } from 'react-router';
+import Components from './components';
 
 const App = ():JSX.Element => (
     <Switch>

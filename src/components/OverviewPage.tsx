@@ -1,14 +1,14 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
-import { fetchSubordinates, setFetching, setSubordinatesList } from "../redux/ducks/subordinates";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import { fetchSubordinates, setFetching, setSubordinatesList } from '../redux/ducks/subordinates';
 
-import OverviewPageStyled from "../styled/mainPage/overviewPage/OverviewPageStyled";
-import { Col, Container, Row } from "react-bootstrap";
-import Preloader from "../assets/images/preloader.svg";
-import {AppDispatch, RootState} from "../redux/store";
+import OverviewPageStyled from '../styled/mainPage/overviewPage/OverviewPageStyled';
+import { Col, Container, Row } from 'react-bootstrap';
+import Preloader from '../assets/images/preloader.svg';
+import { AppDispatch, RootState } from '../redux/store';
 
 type ParamType = {
     name:string

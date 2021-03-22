@@ -7,10 +7,10 @@ type SearchNameAction = {
     searchedName: string
 };
 
-export const SET_SEARCHED_NAME = "SET_SEARCHED_NAME";
+export const SET_SEARCHED_NAME = 'SET_SEARCHED_NAME';
 
 const initialState: InitialState = {
-    searchedName: ""
+    searchedName: ''
 };
 
 const reducer = (state = initialState,

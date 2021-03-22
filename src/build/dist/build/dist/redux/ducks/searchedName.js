@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -11,11 +11,11 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.setSearchedName = exports.SET_SEARCHED_NAME = void 0;
-exports.SET_SEARCHED_NAME = "SET_SEARCHED_NAME";
+exports.SET_SEARCHED_NAME = 'SET_SEARCHED_NAME';
 var initialState = {
-    searchedName: ""
+    searchedName: ''
 };
 var reducer = function (state, action) {
     if (state === void 0) {

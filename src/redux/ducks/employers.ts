@@ -1,10 +1,10 @@
-import {call, put, StrictEffect, takeEvery} from "redux-saga/effects";
-import {EmployersAPI} from "../../api/api";
+import { call, put, StrictEffect, takeEvery } from 'redux-saga/effects';
+import {EmployersAPI} from '../../api/api';
 
-export const SET_EMPLOYERS = "SET_EMPLOYERS";
-export const REQUESTED_EMPLOYERS_FAILED = "REQUESTED_EMPLOYERS_FAILED";
-export const FETCHED_EMPLOYERS = "FETCHED_EMPLOYERS";
-export const SET_FETCHING = "SET_FETCHING";
+export const SET_EMPLOYERS = 'SET_EMPLOYERS';
+export const REQUESTED_EMPLOYERS_FAILED = 'REQUESTED_EMPLOYERS_FAILED';
+export const FETCHED_EMPLOYERS = 'FETCHED_EMPLOYERS';
+export const SET_FETCHING = 'SET_FETCHING';
 
 export type Employers = Array<string>;
 type InitialState = {

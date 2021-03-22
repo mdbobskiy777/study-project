@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import employersReducer from "./ducks";
-import createSagaMiddleware from "redux-saga";
-import { watchFetchEmployers } from "./ducks/employers";
-import { watchFetchSubordinates } from "./ducks/subordinates";
+import { configureStore } from '@reduxjs/toolkit';
+import employersReducer from './ducks';
+import createSagaMiddleware from 'redux-saga';
+import { watchFetchEmployers } from './ducks/employers';
+import { watchFetchSubordinates } from './ducks/subordinates';
 
 export type RootState = ReturnType<typeof appStore.getState>;
 export type AppDispatch = typeof appStore.dispatch

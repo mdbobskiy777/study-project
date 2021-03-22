@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -12,12 +12,12 @@ var __assign = (this && this.__assign) || function () {
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
     var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    return g = { next: verb(0), 'throw': verb(1), 'return': verb(2) }, typeof Symbol === 'function' && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
+        if (f) throw new TypeError('Generator is already executing.');
         while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (f = 1, y && (t = op[0] & 2 ? y['return'] : op[0] ? y['throw'] || ((t = y['return']) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
             case 0: case 1: t = op; break;
@@ -37,13 +37,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.watchFetchEmployers = exports.fetchEmployersList = exports.FETCHED_EMPLOYERS = exports.REQUESTED_EMPLOYERS_FAILED = exports.SET_EMPLOYERS = void 0;
-var effects_1 = require("redux-saga/effects");
-var api_1 = require("../../api/api");
-exports.SET_EMPLOYERS = "SET_EMPLOYERS";
-exports.REQUESTED_EMPLOYERS_FAILED = "REQUESTED_EMPLOYERS_FAILED";
-exports.FETCHED_EMPLOYERS = "FETCHED_EMPLOYERS";
+var effects_1 = require('redux-saga/effects');
+var api_1 = require('../../api/api');
+exports.SET_EMPLOYERS = 'SET_EMPLOYERS';
+exports.REQUESTED_EMPLOYERS_FAILED = 'REQUESTED_EMPLOYERS_FAILED';
+exports.FETCHED_EMPLOYERS = 'FETCHED_EMPLOYERS';
 var initialState = {
     employers: []
 };
