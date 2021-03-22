@@ -60,8 +60,8 @@ const MainPage = ():JSX.Element => {
     return (
         <Container>
             <StyledComponents.MainContainer>
-                <Row xl="12" lg="10" md="8" sm="8" xs="6">
-                    <Col xl="12" lg="12" md="12" sm="12" xs="12">
+                <Row className = "justify-content-center">
+                    <Col xl = "6" lg = "6">
                         <StyledComponents.MyTitle>Enter the employee name</StyledComponents.MyTitle>
                         <StyledComponents.SearchFieldContainer>
                             <StyledComponents.MyInput type='text' placeholder='Enter name here'
@@ -70,18 +70,18 @@ const MainPage = ():JSX.Element => {
                                 }}/>
                             <StyledComponents.MyBtn
                                 onClick={() => OnSearchClickHandler()}>
-                                Search
+                                    Search
                             </StyledComponents.MyBtn>
                         </StyledComponents.SearchFieldContainer>
                         {(errorShowing) && (
                             <StyledComponents.MyErrorDiv>
-                                Wrong employer name! Please enter correct name
+                                    Wrong employer name! Please enter correct name
                             </StyledComponents.MyErrorDiv>
                         )}
                     </Col>
                 </Row>
-                <Row xl="12" lg="10" md="8" sm="8" xs="6">
-                    <Col xl="12" lg="12" md="12" sm="12" xs="12">
+                <Row className = "justify-content-center">
+                    <Col xl= "6" lg = "6">
                         <StyledComponents.MyUL>
                             {(isFetchingSelector) ?
                                 <div>

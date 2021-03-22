@@ -6,7 +6,7 @@ const OverviewPageStyled = {
       text-align: center;
       margin: 20px auto;
       padding: 10px;
-      max-width: 40%;
+      min-width: 40%;
       background: whitesmoke;
       overflow: hidden;
     `,

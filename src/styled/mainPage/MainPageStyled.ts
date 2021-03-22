@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import { Button, ListGroup } from 'react-bootstrap';
+import { Button, ListGroup, Row } from 'react-bootstrap';
 
 const StyledComponents = {
     MainContainer: styled.div`
       text-align: center;
       margin: 20px auto;
       padding: 10px;
-      max-width: 40%;
       overflow: hidden;
       background: whitesmoke;
     `,

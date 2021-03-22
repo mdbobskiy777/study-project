@@ -36,8 +36,8 @@ const OverviewPage:React.FC = ():JSX.Element => {
     return (
         <Container>
             <OverviewPageStyled.MainContainer>
-                <Row xl="12" lg="10" md="8" sm="8" xs="6">
-                    <Col xl="12" lg="12" md="12" sm="12" xs="12">
+                <Row className = "justify-content-center">
+                    <Col xl = "6" lg = "6">
                         <OverviewPageStyled.MyTittle>{paramsName.name}</OverviewPageStyled.MyTittle>
                         {
                             employerDataSelector[0]&&<OverviewPageStyled.MyDiv>
@@ -46,8 +46,8 @@ const OverviewPage:React.FC = ():JSX.Element => {
                         }
                     </Col>
                 </Row>
-                <Row xl="12" lg="10" md="8" sm="8" xs="6">
-                    <Col xl="12" lg="12" md="12" sm="12" xs="12">
+                <Row className = "justify-content-center">
+                    <Col xl = "6" lg = "6">
                         <OverviewPageStyled.MyUL>
                             {(employerDataSelector[1])?(
                                 Object.values(employerDataSelector[1]).map(
