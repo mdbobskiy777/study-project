@@ -1,37 +1,30 @@
-import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { fetchSubordinates, setFetching, setSubordinatesList } from "../../../redux/ducks/subordinates";
+
 import OverviewPageStyled from "../../../styled/mainPage/overviewPage/OverviewPageStyled";
 import { Col, Container, Row } from "react-bootstrap";
 import Preloader from "../../../assets/images/preloader.svg";
+import {AppDispatch, RootState} from "../../../redux/store";
 
 type ParamType = {
     name:string
 };
 
 const OverviewPage:React.FC = ():JSX.Element => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const employerDataSelector = useSelector(state => state. subordinates.employerData);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const isFetchingSelector = useSelector(state => state. subordinates.isFetching);
 
-    const dispatch = useDispatch();
+    const employerDataSelector = useSelector((state:RootState) => state. subordinates.employerData);
+    const isFetchingSelector = useSelector((state:RootState) => state. subordinates.isFetching);
+    const dispatch = useDispatch<AppDispatch>();
     const paramsName:ParamType = useParams();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+
     useEffect(() => {
         dispatch(setFetching(true));
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         if (paramsName.name) dispatch(fetchSubordinates(paramsName.name));
-
     },
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     [paramsName.name]);
 
     useEffect(() => {
@@ -57,6 +50,8 @@ const OverviewPage:React.FC = ():JSX.Element => {
                     <Col xl="12" lg="12" md="12" sm="12" xs="12">
                         <OverviewPageStyled.MyUL>
                             {(employerDataSelector[1])?(
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-ignore
                                 employerDataSelector[1]["direct-subordinates"].map(
                                     ( subordinate: string , index: React.Key ) =>
                                         <OverviewPageStyled.MyLI key={index}>

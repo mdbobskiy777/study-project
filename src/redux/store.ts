@@ -1,26 +1,22 @@
-import { applyMiddleware, compose, createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import employersReducer from "./ducks";
 import createSagaMiddleware from "redux-saga";
 import { watchFetchEmployers } from "./ducks/employers";
 import { watchFetchSubordinates } from "./ducks/subordinates";
 
-
-type ReducerType = typeof rootReducer;
-export type AppStoreType = ReturnType<ReducerType>;
+export type RootState = ReturnType<typeof appStore.getState>;
+export type AppDispatch = typeof appStore.dispatch
 
 const rootReducer = employersReducer;
 
 const sagaMiddleware = createSagaMiddleware();
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 const createAppStore = () => {
-
-    const store = createStore(rootReducer,
-        composeEnhancers(applyMiddleware(sagaMiddleware)));
-
+    
+    const store = configureStore({
+        reducer: rootReducer,
+        middleware:[sagaMiddleware],
+    });
     sagaMiddleware.run(watchFetchEmployers);
     sagaMiddleware.run(watchFetchSubordinates);
 

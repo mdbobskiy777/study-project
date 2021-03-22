@@ -11,13 +11,17 @@ type InitialState = {
     employers: Employers,
     isFetching:boolean
 };
-type ActionTypes = typeof SET_EMPLOYERS | typeof SET_FETCHING;
+type ActionTypes =  SetEmployersListAction | SetFetching | FetchedEmployersAction;
 type FetchedEmployersAction = {
     type:typeof FETCHED_EMPLOYERS
 };
-type setEmployersListAction = {
+type SetEmployersListAction = {
     type:typeof SET_EMPLOYERS,
-    employers:Employers | unknown
+    employers:Employers
+};
+type SetFetching = {
+    type:typeof SET_FETCHING,
+    isFetching:boolean
 };
 
 const initialState: InitialState = {
@@ -26,9 +30,7 @@ const initialState: InitialState = {
 };
 
 const reducer = (state = initialState,
-    action: any):InitialState => {
-    // eslint-disable-next-line no-debugger
-    debugger;
+    action: ActionTypes):InitialState => {
     switch (action.type) {
     case SET_EMPLOYERS :
         return {
@@ -46,10 +48,10 @@ const reducer = (state = initialState,
 //action creators
 export const fetchEmployersList = ():FetchedEmployersAction => ({type: FETCHED_EMPLOYERS});
 
-const setEmployersList = (employers: Employers | unknown):setEmployersListAction =>
-    ({type: SET_EMPLOYERS, employers});
+const setEmployersList = (employers: Employers | unknown):SetEmployersListAction =>
+    <SetEmployersListAction>({type: SET_EMPLOYERS, employers});
 
-export const setFetching = (isFetching:boolean):any =>
+export const setFetching = (isFetching:boolean):SetFetching =>
     ({type: SET_FETCHING, isFetching});
 
 const requestEmployersError = () => ({type: REQUESTED_EMPLOYERS_FAILED});

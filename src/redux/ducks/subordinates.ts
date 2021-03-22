@@ -10,7 +10,7 @@ type InitialState = {
     employerData: string | Array<string>,
     isFetching:boolean
 };
-type ActionsTypes = typeof SET_SUBORDINATES;
+type ActionsTypes = SetSubordinatesAction | SetFetchedAction | FetchedSubordinatesAction;
 type SetSubordinatesAction = {
     type:typeof SET_SUBORDINATES,
     subordinatesData:Array<string>
@@ -19,6 +19,10 @@ type FetchedSubordinatesAction = {
     type:typeof FETCHED_SUBORDINATES,
     name:string
 };
+type SetFetchedAction = {
+    type:typeof SET_FETCHING,
+    isFetching:boolean
+};
 
 const initialState: InitialState = {
     employerData: [],
@@ -26,7 +30,7 @@ const initialState: InitialState = {
 };
 
 const reducer = (state = initialState,
-    action: any ):any => {
+    action: ActionsTypes ):InitialState => {
 
     switch (action.type) {
     case SET_SUBORDINATES:
@@ -52,20 +56,15 @@ export const setSubordinatesList = (subordinatesData: Array<string>):SetSubordin
 const requestSubordinatesError = () => ({type: REQUESTED_SUBORDINATES_FAILED});
 
 export function* watchFetchSubordinates() :Generator<StrictEffect>{
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    yield takeEvery( FETCHED_SUBORDINATES, fetchSubordinatesAsync);
+    yield takeEvery(FETCHED_SUBORDINATES, fetchSubordinatesAsync);
 }
 
-export const setFetching = (isFetching:boolean):any =>
+export const setFetching = (isFetching:boolean):SetFetchedAction =>
     ({type: SET_FETCHING, isFetching});
 
-function* fetchSubordinatesAsync(action: { name: string; }) {
-
+function* fetchSubordinatesAsync(action: FetchedSubordinatesAction) {
     try {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        const subordinatesData = yield call(() => {
+        const subordinatesData:Array<string> = yield call(() => {
             return EmployersAPI.getSubordinates(action.name);
         });
         yield put(setSubordinatesList(subordinatesData));

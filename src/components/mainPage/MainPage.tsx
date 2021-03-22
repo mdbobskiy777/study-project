@@ -8,24 +8,19 @@ import {Col, Container, Row} from "react-bootstrap";
 import {fetchEmployersList, setFetching} from "../../redux/ducks/employers";
 import StyledComponents from "../../styled/mainPage/MainPageStyled";
 import {setSearchedName} from "../../redux/ducks/searchedName";
-
+import {AppDispatch, RootState} from "../../redux/store";
 import Preloader from "../../../src/assets/images/preloader.svg";
 
 const MainPage = ():JSX.Element => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const employersSelector = useSelector(state => state.employers.employers);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const searchedNameSelector = useSelector(state => state.searchedName.searchedName);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const isFetchingSelector = useSelector(state => state.employers.isFetching);
 
-    const dispatch = useDispatch();
+    const employersSelector = useSelector((state:RootState) => state.employers.employers);
+    const searchedNameSelector = useSelector((state:RootState) => state.searchedName.searchedName);
+    const isFetchingSelector = useSelector((state:RootState) => state.employers.isFetching);
 
-    const [isValidName, setValid] = useState(null);
-    const [errorShowing, setErrorShowing] = useState(false);
+    const dispatch = useDispatch<AppDispatch>();
+
+    const [isValidName, setValid] = useState<boolean | null>(null);
+    const [errorShowing, setErrorShowing] = useState<boolean>(false);
 
     const history = useHistory();
 
@@ -52,11 +47,10 @@ const MainPage = ():JSX.Element => {
     }, [isValidName]);
 
     const checkValidName = () => {
-        // eslint-disable-next-line no-debugger
         setValid(searchEmployer(searchedNameSelector));
     };
 
-    const searchEmployer = (name: string) => employersSelector.includes(name);
+    const searchEmployer = (name: string):boolean => employersSelector.includes(name);
 
     const OnSearchClickHandler = () => {
         checkValidName();
@@ -70,7 +64,7 @@ const MainPage = ():JSX.Element => {
                         <StyledComponents.MyTitle>Enter the employee name</StyledComponents.MyTitle>
                         <StyledComponents.SearchFieldContainer>
                             <StyledComponents.MyInput type='text' placeholder='Enter name here'
-                                onChange={(e: { target: { value: string; }; }) => {
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                     setErrorShowing(false);
                                     setValid(null);
                                     dispatch(setSearchedName(e.target.value));
@@ -90,11 +84,12 @@ const MainPage = ():JSX.Element => {
                                 <div>
                                     <StyledComponents.MyIMG src = {Preloader} />
                                 </div> : (
-                                    employersSelector.map((employee: string,
-                                        index: React.Key | null | undefined) => {
-                                        return <StyledComponents.MyLI key={index}>{employee}</StyledComponents.MyLI>;
+                                    employersSelector.map(( employee: string,
+                                        index: React.Key ) => {
+                                        return <StyledComponents.MyLI key={index}>
+                                            {employee}
+                                        </StyledComponents.MyLI>;
                                     })
-
                                 )}
                         </StyledComponents.MyUL>
                     </Col>

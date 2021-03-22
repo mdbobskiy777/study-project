@@ -10,7 +10,7 @@ export const EmployersAPI = {
         return instance.get("").then(response => response.data);
     },
 
-    getSubordinates(name:string) {
+    getSubordinates(name:string):Promise<AxiosResponse<Array<string>>> {
         return instance.get(`${name}/`).then(response => response.data);
     }
 };
