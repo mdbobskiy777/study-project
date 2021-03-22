@@ -4,6 +4,10 @@ import createSagaMiddleware from "redux-saga";
 import { watchFetchEmployers } from "./ducks/employers";
 import { watchFetchSubordinates } from "./ducks/subordinates";
 
+
+type ReducerType = typeof rootReducer;
+export type AppStoreType = ReturnType<ReducerType>;
+
 const rootReducer = employersReducer;
 
 const sagaMiddleware = createSagaMiddleware();

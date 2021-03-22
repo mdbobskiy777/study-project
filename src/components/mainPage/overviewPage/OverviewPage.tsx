@@ -11,7 +11,7 @@ type ParamType = {
     name:string
 };
 
-const OverviewPage = ():JSX.Element => {
+const OverviewPage:React.FC = ():JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const employerDataSelector = useSelector(state => state. subordinates.employerData);
