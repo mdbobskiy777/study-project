@@ -5,11 +5,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
 import {Col, Container, Row} from "react-bootstrap";
 
-import {fetchEmployersList, setFetching} from "../../redux/ducks/employers";
-import StyledComponents from "../../styled/mainPage/MainPageStyled";
-import {setSearchedName} from "../../redux/ducks/searchedName";
-import {AppDispatch, RootState} from "../../redux/store";
-import Preloader from "../../../src/assets/images/preloader.svg";
+import {fetchEmployersList, setFetching} from "../redux/ducks/employers";
+import StyledComponents from "../styled/mainPage/MainPageStyled";
+import {setSearchedName} from "../redux/ducks/searchedName";
+import {AppDispatch, RootState} from "../redux/store";
+import Preloader from "../assets/images/preloader.svg";
 
 const MainPage = ():JSX.Element => {
 
@@ -35,13 +35,9 @@ const MainPage = ():JSX.Element => {
             history.push(`/employers/${searchedNameSelector}`);
             dispatch(setSearchedName(""));
             setErrorShowing(false);
-
-        } else if(!isValidName){
-            if(searchedNameSelector===""){
-                setErrorShowing(false);
-            }else {
-                setErrorShowing(true);
-            }
+        } else if(!isValidName) {
+            setErrorShowing(false);
+            setErrorShowing(searchedNameSelector !== "");
         }
 
     }, [isValidName]);
@@ -55,6 +51,11 @@ const MainPage = ():JSX.Element => {
     const OnSearchClickHandler = () => {
         checkValidName();
     };
+    const OnChangeInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setErrorShowing(false);
+        setValid(null);
+        dispatch(setSearchedName(event.target.value));
+    };
 
     return (
         <Container>
@@ -64,16 +65,18 @@ const MainPage = ():JSX.Element => {
                         <StyledComponents.MyTitle>Enter the employee name</StyledComponents.MyTitle>
                         <StyledComponents.SearchFieldContainer>
                             <StyledComponents.MyInput type='text' placeholder='Enter name here'
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                                    setErrorShowing(false);
-                                    setValid(null);
-                                    dispatch(setSearchedName(e.target.value));
+                                onChange={(event) => {
+                                    OnChangeInputHandler(event);
                                 }}/>
                             <StyledComponents.MyBtn
-                                onClick={() => OnSearchClickHandler()}>Search</StyledComponents.MyBtn>
+                                onClick={() => OnSearchClickHandler()}>
+                                Search
+                            </StyledComponents.MyBtn>
                         </StyledComponents.SearchFieldContainer>
-                        {(errorShowing) && (<StyledComponents.MyErrorDiv>
-                                Wrong employer name! Please enter correct name</StyledComponents.MyErrorDiv>
+                        {(errorShowing) && (
+                            <StyledComponents.MyErrorDiv>
+                                Wrong employer name! Please enter correct name
+                            </StyledComponents.MyErrorDiv>
                         )}
                     </Col>
                 </Row>

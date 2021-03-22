@@ -6,11 +6,10 @@ const instance = axios.create({
 });
 
 export const EmployersAPI = {
-    getEmployers():Promise<AxiosResponse<Employers>> {
+    getEmployers(): Promise<AxiosResponse<Employers>> {
         return instance.get("").then(response => response.data);
     },
-
-    getSubordinates(name:string):Promise<AxiosResponse<Array<string>>> {
+    getSubordinates(name: string): Promise<AxiosResponse<Array<string>>> {
         return instance.get(`${name}/`).then(response => response.data);
     }
 };

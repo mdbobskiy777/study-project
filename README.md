@@ -1,5 +1,5 @@
-Study React project  
-To start project run in terminal ...\study-project\ command:  
+#  Study React Project  
+###  to start project run in terminal a command:  
 npm install  
-and then:  
+###  then run command:  
 npm start  
