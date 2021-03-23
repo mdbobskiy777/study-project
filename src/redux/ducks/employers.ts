@@ -1,29 +1,19 @@
 import { call, put, StrictEffect, takeEvery } from 'redux-saga/effects';
 
 import { EmployersAPI } from '../../api/api';
+import {
+    ActionTypes,
+    Employers,
+    FetchedEmployersAction,
+    InitialState,
+    SetEmployersListAction, SetFetching
+} from '../../types/employers';
 
 export const SET_EMPLOYERS = 'SET_EMPLOYERS';
 export const REQUESTED_EMPLOYERS_FAILED = 'REQUESTED_EMPLOYERS_FAILED';
 export const FETCHED_EMPLOYERS = 'FETCHED_EMPLOYERS';
 export const SET_FETCHING = 'SET_FETCHING';
 
-export type Employers = Array<string>;
-type InitialState = {
-    employers: Employers,
-    isFetching:boolean
-};
-type ActionTypes =  SetEmployersListAction | SetFetching | FetchedEmployersAction;
-type FetchedEmployersAction = {
-    type:typeof FETCHED_EMPLOYERS
-};
-type SetEmployersListAction = {
-    type:typeof SET_EMPLOYERS,
-    employers:Employers
-};
-type SetFetching = {
-    type:typeof SET_FETCHING,
-    isFetching:boolean
-};
 
 const initialState: InitialState = {
     employers: [],

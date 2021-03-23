@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { Employers } from '../redux/ducks/employers';
+import { Employers } from '../types/employers';
 
 const instance = axios.create({
     baseURL: 'http://api.additivasia.io/api/v1/assignment/employees/'

@@ -8,16 +8,13 @@ import OverviewPageStyled from '../styled/OverviewPageStyled';
 import { AppDispatch, RootState } from '../redux/store';
 import Preloader from '../assets/images/preloader.svg';
 
-
-type ParamType = {
-    name:string
-};
-
-const OverviewPage:React.FC = () : JSX.Element => {
+const OverviewPage = () : JSX.Element => {
     const employerDataSelector = useSelector((state:RootState) => state. subordinates.employerData);
     const isFetchingSelector = useSelector((state:RootState) => state. subordinates.isFetching);
+
     const dispatch = useDispatch<AppDispatch>();
-    const paramsName:ParamType = useParams();
+
+    const paramsName: { name:string } = useParams();
 
     useEffect(() => {
         dispatch(setFetching(true));

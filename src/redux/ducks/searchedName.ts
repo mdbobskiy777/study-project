@@ -1,11 +1,4 @@
-type ActionsTypes = typeof SET_SEARCHED_NAME;
-type InitialState = {
-    searchedName: string
-};
-type SearchNameAction = {
-    type: typeof SET_SEARCHED_NAME,
-    searchedName: string
-};
+import { ActionsTypes, InitialState, SearchNameAction } from '../../types/searchedName';
 
 export const SET_SEARCHED_NAME = 'SET_SEARCHED_NAME';
 

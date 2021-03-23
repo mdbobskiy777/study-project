@@ -1,34 +1,19 @@
 import { call, put, StrictEffect, takeEvery } from 'redux-saga/effects';
 
 import { EmployersAPI } from '../../api/api';
+import {
+    ActionsTypes,
+    FetchedSubordinatesAction,
+    InitialState,
+    initialState, SetFetchedAction,
+    SetSubordinatesAction
+} from '../../types/subordinates';
 
 export const SET_SUBORDINATES = 'GET_SUBORDINATES';
 export const REQUESTED_SUBORDINATES_FAILED = 'REQUESTED_SUBORDINATES_FAILED';
 export const FETCHED_SUBORDINATES = 'FETCHED_SUBORDINATES';
 export const SET_FETCHING = 'SET_FETCHING';
 
-type InitialState = {
-    employerData: string | Array<string>,
-    isFetching:boolean
-};
-type ActionsTypes = SetSubordinatesAction | SetFetchedAction | FetchedSubordinatesAction;
-type SetSubordinatesAction = {
-    type:typeof SET_SUBORDINATES,
-    subordinatesData:Array<string>
-};
-type FetchedSubordinatesAction = {
-    type:typeof FETCHED_SUBORDINATES,
-    name:string
-};
-type SetFetchedAction = {
-    type:typeof SET_FETCHING,
-    isFetching:boolean
-};
-
-const initialState: InitialState = {
-    employerData: [],
-    isFetching:false
-};
 
 const reducer = (state = initialState,
     action: ActionsTypes ):InitialState => {
