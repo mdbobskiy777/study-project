@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+
 import { Employers } from '../redux/ducks/employers';
 
 const instance = axios.create({

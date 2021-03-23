@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import employersReducer from './ducks';
 import createSagaMiddleware from 'redux-saga';
+
+import employersReducer from './ducks';
 import { watchFetchEmployers } from './ducks/employers';
 import { watchFetchSubordinates } from './ducks/subordinates';
 
@@ -12,7 +13,6 @@ const rootReducer = employersReducer;
 const sagaMiddleware = createSagaMiddleware();
 
 const createAppStore = () => {
-    
     const store = configureStore({
         reducer: rootReducer,
         middleware:[sagaMiddleware],
@@ -21,7 +21,6 @@ const createAppStore = () => {
     sagaMiddleware.run(watchFetchSubordinates);
 
     return store;
-
 };
 
 export const appStore = createAppStore();

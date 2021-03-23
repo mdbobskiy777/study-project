@@ -1,5 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
@@ -11,8 +9,7 @@ import { setSearchedName } from '../redux/ducks/searchedName';
 import { AppDispatch, RootState } from '../redux/store';
 import Preloader from '../assets/images/preloader.svg';
 
-const MainPage = ():JSX.Element => {
-
+const MainPage = () : JSX.Element => {
     const employersSelector = useSelector((state:RootState) => state.employers.employers);
     const searchedNameSelector = useSelector((state:RootState) => state.searchedName.searchedName);
     const isFetchingSelector = useSelector((state:RootState) => state.employers.isFetching);
@@ -30,7 +27,6 @@ const MainPage = ():JSX.Element => {
     }, []);
 
     useEffect(() => {
-
         if (isValidName) {
             history.push(`/employers/${searchedNameSelector}`);
             dispatch(setSearchedName(''));
@@ -39,7 +35,6 @@ const MainPage = ():JSX.Element => {
             setErrorShowing(false);
             setErrorShowing(searchedNameSelector !== '');
         }
-
     }, [isValidName]);
 
     const checkValidName = () => {
@@ -51,6 +46,7 @@ const MainPage = ():JSX.Element => {
     const OnSearchClickHandler = () => {
         checkValidName();
     };
+
     const OnChangeInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setErrorShowing(false);
         setValid(null);
@@ -60,47 +56,46 @@ const MainPage = ():JSX.Element => {
     return (
         <Container>
             <StyledComponents.MainContainer>
-                <Row className = "justify-content-center">
-                    <Col xl = "6" lg = "6">
+                <Row className="justify-content-center">
+                    <Col xl="6" lg="6">
                         <StyledComponents.MyTitle>Enter the employee name</StyledComponents.MyTitle>
                         <StyledComponents.SearchFieldContainer>
-                            <StyledComponents.MyInput type='text' placeholder='Enter name here'
-                                onChange={(event) => {
-                                    OnChangeInputHandler(event);
-                                }}/>
-                            <StyledComponents.MyBtn
-                                onClick={() => OnSearchClickHandler()}>
+                            <StyledComponents.MyInput
+                                type='text'
+                                placeholder='Enter name here'
+                                onChange={(event) => OnChangeInputHandler(event)}
+                            />
+                            <StyledComponents.MyBtn onClick={() => OnSearchClickHandler()}>
                                     Search
                             </StyledComponents.MyBtn>
                         </StyledComponents.SearchFieldContainer>
-                        {(errorShowing) && (
+                        {errorShowing && (
                             <StyledComponents.MyErrorDiv>
                                     Wrong employer name! Please enter correct name
                             </StyledComponents.MyErrorDiv>
                         )}
                     </Col>
                 </Row>
-                <Row className = "justify-content-center">
-                    <Col xl= "6" lg = "6">
+                <Row className="justify-content-center">
+                    <Col xl="6" lg="6">
                         <StyledComponents.MyUL>
-                            {(isFetchingSelector) ?
+                            {isFetchingSelector ? (
                                 <div>
                                     <StyledComponents.MyIMG src = {Preloader} />
-                                </div> : (
-                                    employersSelector.map(( employee: string,
-                                        index: React.Key ) => {
-                                        return <StyledComponents.MyLI key={index}>
-                                            {employee}
-                                        </StyledComponents.MyLI>;
-                                    })
-                                )}
+                                </div> 
+                            ) : (
+                                employersSelector.map(( employee: string, index: React.Key ) => (
+                                    <StyledComponents.MyLI key={index}>
+                                        {employee}
+                                    </StyledComponents.MyLI>
+                                ))
+                            )}
                         </StyledComponents.MyUL>
                     </Col>
                 </Row>
             </StyledComponents.MainContainer>
         </Container>
     );
-
 };
 
 export default MainPage;

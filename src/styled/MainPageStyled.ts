@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, ListGroup, Row } from 'react-bootstrap';
+import { Button, ListGroup } from 'react-bootstrap';
 
 const StyledComponents = {
     MainContainer: styled.div`

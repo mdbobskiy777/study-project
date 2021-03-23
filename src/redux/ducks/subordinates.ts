@@ -1,4 +1,5 @@
 import { call, put, StrictEffect, takeEvery } from 'redux-saga/effects';
+
 import { EmployersAPI } from '../../api/api';
 
 export const SET_SUBORDINATES = 'GET_SUBORDINATES';
@@ -31,7 +32,6 @@ const initialState: InitialState = {
 
 const reducer = (state = initialState,
     action: ActionsTypes ):InitialState => {
-
     switch (action.type) {
     case SET_SUBORDINATES:
         return {
