@@ -6,7 +6,7 @@ import { useHistory } from 'react-router';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import { fetchEmployersList, setFetching } from '../redux/ducks/employers';
-import StyledComponents from '../styled/mainPage/MainPageStyled';
+import StyledComponents from '../styled/MainPageStyled';
 import { setSearchedName } from '../redux/ducks/searchedName';
 import { AppDispatch, RootState } from '../redux/store';
 import Preloader from '../assets/images/preloader.svg';
