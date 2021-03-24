@@ -62,6 +62,7 @@ const MainPage = () : JSX.Element => {
                         <StyledComponents.SearchFieldContainer>
                             <StyledComponents.MyInput
                                 type='text'
+                                value={searchedNameSelector}
                                 placeholder='Enter name here'
                                 onChange={(event) => OnChangeInputHandler(event)}
                             />
