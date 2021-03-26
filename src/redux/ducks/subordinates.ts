@@ -8,6 +8,7 @@ import {
     initialState, SetFetchedAction,
     SetSubordinatesAction
 } from '../../types/subordinates';
+import { subordinatesResponse } from '../../types/api';
 
 export const SET_SUBORDINATES = 'GET_SUBORDINATES';
 export const REQUESTED_SUBORDINATES_FAILED = 'REQUESTED_SUBORDINATES_FAILED';
@@ -35,7 +36,7 @@ const reducer = (state = initialState,
 export const fetchSubordinates = (name: string):FetchedSubordinatesAction => 
     ({type: FETCHED_SUBORDINATES, name});
 
-export const setSubordinatesList = (subordinatesData: Array<string>):SetSubordinatesAction =>
+export const setSubordinatesList = (subordinatesData: subordinatesResponse):SetSubordinatesAction =>
     ({type: SET_SUBORDINATES, subordinatesData});
 
 const requestSubordinatesError = () => ({type: REQUESTED_SUBORDINATES_FAILED});
@@ -49,7 +50,7 @@ export const setFetching = (isFetching:boolean):SetFetchedAction =>
 
 function* fetchSubordinatesAsync(action: FetchedSubordinatesAction) {
     try {
-        const subordinatesData:Array<string> = yield call(() => {
+        const subordinatesData:subordinatesResponse = yield call(() => {
             return EmployersAPI.getSubordinates(action.name);
         });
         yield put(setSubordinatesList(subordinatesData));

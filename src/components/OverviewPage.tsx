@@ -23,10 +23,14 @@ const OverviewPage = () : JSX.Element => {
 
     useEffect(() => {
         return () => {
-            dispatch(setSubordinatesList([]));
+            dispatch(setSubordinatesList(['', {'direct-subordinates': []}]));
         };
     },[]);
 
+    const mapSubordinatesData = () => {
+        if(employerDataSelector[1]) console.log(Object.values(employerDataSelector[1])[0]);
+    };
+    mapSubordinatesData();
     return (
         <Container>
             <OverviewPageStyled.MainContainer>
@@ -46,13 +50,13 @@ const OverviewPage = () : JSX.Element => {
                     <Col xl="6" lg="6">
                         <OverviewPageStyled.MyUL>
                             {employerDataSelector[1]?(
-                                Object.values(employerDataSelector[1]).map(
+                                Object.values(employerDataSelector[1])[0].map(
                                     ( subordinate: string , index: React.Key ) =>
                                         <OverviewPageStyled.MyLI key={index}>
                                             {subordinate}
                                         </OverviewPageStyled.MyLI>
                                 )) : (
-                                !isFetchingSelector && (
+                                (employerDataSelector[0]&&!isFetchingSelector) && (
                                     <div>Haven`t subordinates</div>
                                 )
                             )}
