@@ -39,7 +39,7 @@ const reducer = (state = initialState,
 //action creators
 export const fetchEmployersList = ():FetchedEmployersAction => ({type: FETCHED_EMPLOYERS});
 
-const setEmployersList = (employers: Employers | unknown):SetEmployersListAction =>
+export const setEmployersList = (employers: Employers | unknown):SetEmployersListAction =>
     <SetEmployersListAction>({type: SET_EMPLOYERS, employers});
 
 export const setFetching = (isFetching:boolean):SetFetching =>

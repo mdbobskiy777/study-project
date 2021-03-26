@@ -27,10 +27,6 @@ const OverviewPage = () : JSX.Element => {
         };
     },[]);
 
-    const mapSubordinatesData = () => {
-        if(employerDataSelector[1]) console.log(Object.values(employerDataSelector[1])[0]);
-    };
-    mapSubordinatesData();
     return (
         <Container>
             <OverviewPageStyled.MainContainer>

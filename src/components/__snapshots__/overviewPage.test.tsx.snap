@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`overviewPage render should render empty page and then page with preloader 1`] = `"<div class=\\"container\\"><div class=\\"sc-bdfBwQ iEjbxj\\"><div class=\\"justify-content-center row\\"><div class=\\"col-xl-6 col-lg-6\\"><div class=\\"sc-hKgILt hWsmEw\\"></div></div></div><div class=\\"justify-content-center row\\"><div class=\\"col-xl-6 col-lg-6\\"><div class=\\"sc-gsTCUz iOjICt list-group\\"></div></div></div></div></div>"`;
+
+exports[`overviewPage render should render empty page and then page with preloader 2`] = `"<div class=\\"container\\"><div class=\\"sc-bdfBwQ iEjbxj\\"><div class=\\"justify-content-center row\\"><div class=\\"col-xl-6 col-lg-6\\"><div class=\\"sc-hKgILt hWsmEw\\"></div></div></div><div class=\\"justify-content-center row\\"><div class=\\"col-xl-6 col-lg-6\\"><div class=\\"sc-gsTCUz iOjICt list-group\\"><div><img src=\\"preloader.svg\\" class=\\"sc-jSgupP emQGDX\\"></div></div></div></div></div></div>"`;
