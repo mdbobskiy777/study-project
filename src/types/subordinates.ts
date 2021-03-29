@@ -1,16 +1,16 @@
-import { subordinatesResponse } from './api';
+import { SubordinatesResponse } from './api';
 
 import { FETCHED_SUBORDINATES, SET_FETCHING, SET_SUBORDINATES } from '../redux/ducks/subordinates';
 
 export type InitialState = {
-    employerData: subordinatesResponse,
+    employerData: SubordinatesResponse,
     isFetching:boolean
 };
 export type ActionsTypes = SetSubordinatesAction | SetFetchedAction | FetchedSubordinatesAction;
 
 export type SetSubordinatesAction = {
     type:typeof SET_SUBORDINATES,
-    subordinatesData:subordinatesResponse
+    subordinatesData:SubordinatesResponse
 };
 
 export type FetchedSubordinatesAction = {
@@ -21,14 +21,4 @@ export type FetchedSubordinatesAction = {
 export type SetFetchedAction = {
     type:typeof SET_FETCHING,
     isFetching:boolean
-};
-
-export const initialState: InitialState = {
-    employerData:[
-        '',
-        {
-            'direct-subordinates': []
-        }
-    ],
-    isFetching:false
 };

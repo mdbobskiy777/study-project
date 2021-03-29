@@ -5,16 +5,25 @@ import {
     ActionsTypes,
     FetchedSubordinatesAction,
     InitialState,
-    initialState, SetFetchedAction,
+    SetFetchedAction,
     SetSubordinatesAction
 } from '../../types/subordinates';
-import { subordinatesResponse } from '../../types/api';
+import { SubordinatesResponse } from '../../types/api';
 
 export const SET_SUBORDINATES = 'GET_SUBORDINATES';
 export const REQUESTED_SUBORDINATES_FAILED = 'REQUESTED_SUBORDINATES_FAILED';
 export const FETCHED_SUBORDINATES = 'FETCHED_SUBORDINATES';
 export const SET_FETCHING = 'SET_FETCHING';
 
+export const initialState: InitialState = {
+    employerData:[
+        '',
+        {
+            'direct-subordinates': []
+        }
+    ],
+    isFetching:false
+};
 
 const reducer = (state = initialState,
     action: ActionsTypes ):InitialState => {
@@ -32,27 +41,24 @@ const reducer = (state = initialState,
     }
 };
 
-//action creators
-export const fetchSubordinates = (name: string):FetchedSubordinatesAction => 
+export const fetchSubordinates = (name: string):FetchedSubordinatesAction =>
     ({type: FETCHED_SUBORDINATES, name});
 
-export const setSubordinatesList = (subordinatesData: subordinatesResponse):SetSubordinatesAction =>
-    ({type: SET_SUBORDINATES, subordinatesData});
+export const setSubordinatesList = (subordinatesData: SubordinatesResponse | unknown) : SetSubordinatesAction =>
+    <SetSubordinatesAction>({type: SET_SUBORDINATES, subordinatesData});
 
 const requestSubordinatesError = () => ({type: REQUESTED_SUBORDINATES_FAILED});
-
-export function* watchFetchSubordinates() :Generator<StrictEffect>{
-    yield takeEvery(FETCHED_SUBORDINATES, fetchSubordinatesAsync);
-}
 
 export const setFetching = (isFetching:boolean):SetFetchedAction =>
     ({type: SET_FETCHING, isFetching});
 
-function* fetchSubordinatesAsync(action: FetchedSubordinatesAction) {
+export function* watchFetchSubordinates() : Generator<StrictEffect>{
+    yield takeEvery(FETCHED_SUBORDINATES, fetchSubordinatesAsync);
+}
+
+export function* fetchSubordinatesAsync(action: FetchedSubordinatesAction) : Generator<StrictEffect> {
     try {
-        const subordinatesData:subordinatesResponse = yield call(() => {
-            return EmployersAPI.getSubordinates(action.name);
-        });
+        const subordinatesData : SubordinatesResponse | unknown = yield call(EmployersAPI.getSubordinates,action.name);
         yield put(setSubordinatesList(subordinatesData));
         yield put(setFetching(false));
     } catch (error) {

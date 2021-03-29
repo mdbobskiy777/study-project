@@ -1,8 +1,17 @@
-import reducer, { SET_FETCHING, SET_SUBORDINATES, setFetching, setSubordinatesList } from './subordinates';
-import { subordinatesResponse } from '../../types/api';
+import { expectSaga } from 'redux-saga-test-plan';
+import { call } from 'redux-saga-test-plan/matchers';
+
+import reducer, {
+    FETCHED_SUBORDINATES,
+    fetchSubordinatesAsync,
+    SET_FETCHING, SET_SUBORDINATES,
+    setFetching, setSubordinatesList, initialState
+} from './subordinates';
+import { SubordinatesResponse } from '../../types/api';
+import { EmployersAPI } from '../../api/api';
 
 describe('actions', () => {
-    const subordinatesData: subordinatesResponse = [
+    const subordinatesData: SubordinatesResponse = [
         'CEO',
         {
             'direct-subordinates': [
@@ -30,7 +39,7 @@ describe('actions', () => {
 });
 
 describe('reducer', () => {
-    const subordinatesData: subordinatesResponse = [
+    const subordinatesData: SubordinatesResponse = [
         'CEO',
         {
             'direct-subordinates': [
@@ -39,6 +48,7 @@ describe('reducer', () => {
             ]
         }
     ];
+    const paramsName = 'John Hartman';
 
     it('should return the initial state', () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -76,5 +86,27 @@ describe('reducer', () => {
                 employerData: subordinatesData,
                 isFetching:false
             });
+    });
+
+    it('test only final effect with .provide()', () => {
+        return expectSaga(fetchSubordinatesAsync,{ type: FETCHED_SUBORDINATES, name:paramsName})
+            .provide([
+                [call(EmployersAPI.getSubordinates,paramsName),subordinatesData]])
+            .put(setFetching(false))
+            .put(setSubordinatesList(subordinatesData))
+            .call(EmployersAPI.getSubordinates,paramsName)
+            .run();
+    });
+
+    it('integration test with withReducer', () => {
+        return expectSaga(fetchSubordinatesAsync,{ type: FETCHED_SUBORDINATES, name:paramsName})
+            .provide([
+                [call(EmployersAPI.getSubordinates,paramsName),subordinatesData]])
+            .withReducer(reducer,initialState)
+            .put(setFetching(false))
+            .put(setSubordinatesList(subordinatesData))
+            .call(EmployersAPI.getSubordinates,paramsName)
+            .run()
+            .then(result => expect(result.storeState.employerData).toEqual(subordinatesData));
     });
 });

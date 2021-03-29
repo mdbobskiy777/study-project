@@ -1,4 +1,4 @@
-import reducer ,{SET_SEARCHED_NAME, setSearchedName} from './searchedName';
+import reducer ,{ SET_SEARCHED_NAME, setSearchedName } from './searchedName';
 
 describe('actions', () => {
     it('should create an action SET_SEARCHED_NAME', () => {

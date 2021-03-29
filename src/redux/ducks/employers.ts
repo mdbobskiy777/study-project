@@ -51,11 +51,9 @@ export function* watchFetchEmployers():Generator<StrictEffect>{
     yield takeEvery(FETCHED_EMPLOYERS, fetchEmployersAsync);
 }
 
-function* fetchEmployersAsync():Generator<StrictEffect> {
+export function* fetchEmployersAsync():Generator<StrictEffect> {
     try {
-        const employers:Employers | unknown = yield call(() => {
-            return EmployersAPI.getEmployers();
-        });
+        const employers : Employers | unknown = yield call(EmployersAPI.getEmployers);
         yield put(setEmployersList(employers));
         yield put(setFetching(false));
     } catch (error) {

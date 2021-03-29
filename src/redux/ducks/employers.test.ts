@@ -1,4 +1,16 @@
-import reducer, {SET_EMPLOYERS, SET_FETCHING, setEmployersList, setFetching} from './employers';
+import { expectSaga } from 'redux-saga-test-plan';
+import { call } from 'redux-saga-test-plan/matchers';
+
+import reducer, {
+    SET_EMPLOYERS,
+    SET_FETCHING,
+    fetchEmployersAsync,
+    setEmployersList,
+    setFetching,
+} from './employers';
+
+import { EmployersAPI } from '../../api/api';
+import {InitialState} from '../../types/employers';
 
 describe('actions', () => {
     const employers = [
@@ -70,5 +82,46 @@ describe('reducer', () => {
                 employers: employers,
                 isFetching:false
             });
+    });
+});
+
+describe('sagas', () => {
+    const employers = [
+        'John Hartman',
+        'Samad Pitt',
+        'Amaya Knight',
+        'Leanna Hogg',
+        'Aila Hodgson',
+        'Vincent Todd',
+        'Faye Oneill',
+        'Lynn Haigh',
+        'Nylah Riddle'
+    ];
+
+    it('test only final effect with .provide()', () => {
+        return expectSaga(fetchEmployersAsync)
+            .provide([
+                [call(EmployersAPI.getEmployers),employers]])
+            .put(setFetching(false))
+            .put(setEmployersList(employers))
+            .call(EmployersAPI.getEmployers)
+            .run();
+    });
+
+    it('integration test with withReducer', () => {
+        const initialState: InitialState = {
+            employers: [],
+            isFetching:false
+        };
+
+        return expectSaga(fetchEmployersAsync)
+            .withReducer(reducer,initialState)
+            .provide([
+                [call(EmployersAPI.getEmployers),employers]])
+            .put(setFetching(false))
+            .put(setEmployersList(employers))
+            .call(EmployersAPI.getEmployers)
+            .run()
+            .then(result => expect(result.storeState.employers).toEqual(employers));
     });
 });
