@@ -1,13 +1,20 @@
 import styled from 'styled-components';
 import { Button, ListGroup } from 'react-bootstrap';
 
+import { mainPageProperties } from './styledComponentsProperties';
+import { displaySizes } from './styledComponentsProperties';
+
 const StyledComponents = {
     MainContainer: styled.div`
       text-align: center;
       margin: 20px auto;
       padding: 10px;
       overflow: hidden;
-      background: whitesmoke;
+      background: ${ mainPageProperties.mainContainer.background };
+      
+      @media (min-width : ${ displaySizes.md }) {
+        max-width:  ${ mainPageProperties.mainContainer.maxWidth };
+      }
     `,
     MyTitle: styled.div`
       font-size: 1.5em;
@@ -16,8 +23,8 @@ const StyledComponents = {
     `,
     MyErrorDiv: styled.div`
       font-size: 1em;
-      color: darkred;
-      border: 1px solid darkred;
+      color: ${mainPageProperties.myErrorDiv.color};
+      border: ${mainPageProperties.myErrorDiv.border};
       width: 80%;
       margin: 5px auto;
       padding: 5px;
@@ -25,7 +32,7 @@ const StyledComponents = {
     `,
     MyInput: styled.input`
       margin: 5px;
-      width: 50%;
+      width: ${mainPageProperties.myInput.width};
     `,
     SearchFieldContainer: styled.div`
       padding: 5px;
@@ -37,7 +44,7 @@ const StyledComponents = {
     MyUL: styled(ListGroup)`
       margin: 10px auto;
       padding: 10px;
-      background: white;
+      background: ${mainPageProperties.myUL.background};
       text-align: center;
     `,
     MyLI: styled(ListGroup.Item)`
@@ -46,7 +53,7 @@ const StyledComponents = {
       margin: 0 auto;
     `,
     MyIMG: styled.img`
-        width: 20%;
+        width: ${mainPageProperties.myIMG.width};
     `
 };
 export default StyledComponents;

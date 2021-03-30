@@ -16,8 +16,7 @@ it('fetch Employers list', async () => {
         'Lynn Haigh',
         'Nylah Riddle'
     ];
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+
     mockAxios.get.mockImplementationOnce(() =>
         Promise.resolve({ data: data }),
     );
@@ -28,6 +27,7 @@ it('fetch Employers list', async () => {
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
     expect(mockAxios.get).toHaveBeenCalledWith('');
 });
+
 it('fetch subordinates data', async () => {
     const employeeName = 'John Hartman';
 
@@ -40,8 +40,7 @@ it('fetch subordinates data', async () => {
             ]
         }
     ];
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+
     mockAxios.get.mockImplementationOnce(() =>
         Promise.resolve({ data: data }),
     );

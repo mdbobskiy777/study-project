@@ -50,23 +50,7 @@ describe('reducer', () => {
     ];
     const paramsName = 'John Hartman';
 
-    it('should return the initial state', () => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        expect(reducer(undefined,{})).toEqual(
-            {
-                employerData:[
-                    '',
-                    {
-                        'direct-subordinates': []
-                    }
-                ],
-                isFetching:false
-            });
-    });
-
     it('should handle SET_FETCHING', () => {
-
         expect(reducer(undefined,{ type: SET_FETCHING,isFetching: true })).toEqual(
             {
                 employerData:[
@@ -80,7 +64,6 @@ describe('reducer', () => {
     });
 
     it('should handle SET_SUBORDINATES', () => {
-
         expect(reducer(undefined,{ type: SET_SUBORDINATES,subordinatesData })).toEqual(
             {
                 employerData: subordinatesData,

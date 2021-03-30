@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import { fetchEmployersList, setFetching } from '../redux/ducks/employers';
-import StyledComponents from '../styled/MainPageStyled';
+import StyledComponents from '../styled/mainPageStyled';
 import { setSearchedName } from '../redux/ducks/searchedName';
 import { AppDispatch, RootState } from '../redux/store';
 import Preloader from '../assets/images/preloader.svg';
@@ -57,7 +57,7 @@ const MainPage = () : JSX.Element => {
         <Container>
             <StyledComponents.MainContainer>
                 <Row className="justify-content-center">
-                    <Col xl="6" lg="6">
+                    <Col>
                         <StyledComponents.MyTitle>Enter the employee name</StyledComponents.MyTitle>
                         <StyledComponents.SearchFieldContainer>
                             <StyledComponents.MyInput
@@ -78,7 +78,7 @@ const MainPage = () : JSX.Element => {
                     </Col>
                 </Row>
                 <Row className="justify-content-center">
-                    <Col xl="6" lg="6">
+                    <Col>
                         <StyledComponents.MyUL>
                             {isFetchingSelector ? (
                                 <div>

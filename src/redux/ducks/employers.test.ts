@@ -67,21 +67,13 @@ describe('reducer', () => {
 
     it('should handle SET_FETCHING', () => {
 
-        expect(reducer(undefined,{ type: SET_FETCHING,isFetching: true })).toEqual(
-            {
-                employers: [],
-                isFetching: true
-
-            });
+        expect(reducer(undefined,{ type: SET_FETCHING, isFetching: true })).toEqual(
+            { employers: [], isFetching: true });
     });
 
     it('should handle SET_EMPLOYERS', () => {
-
-        expect(reducer(undefined,{ type: SET_EMPLOYERS,employers })).toEqual(
-            {
-                employers: employers,
-                isFetching:false
-            });
+        expect(reducer(undefined,{ type: SET_EMPLOYERS, employers })).toEqual(
+            { employers: employers, isFetching:false });
     });
 });
 

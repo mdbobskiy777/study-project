@@ -1,7 +1,7 @@
-const mockAxios = jest.genMockFromModule('axios');
+import axios from 'axios';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+const mockAxios = jest.genMockFromModule('axios') as jest.Mocked<typeof axios>;
+
 mockAxios.create = jest.fn(() => mockAxios);
 
 export default mockAxios;

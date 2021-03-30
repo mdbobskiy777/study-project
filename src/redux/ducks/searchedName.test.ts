@@ -13,15 +13,6 @@ describe('actions', () => {
 });
 
 describe('reducer', () => {
-    it('should return the initial state', () => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        expect(reducer(undefined,{})).toEqual(
-            {
-                searchedName: ''
-            });
-    });
-
     it('should handle SET_SEARCHED_NAME', () => {
         const searchedName = 'Sobaka';
 

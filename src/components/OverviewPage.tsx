@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import { fetchSubordinates, setFetching, setSubordinatesList } from '../redux/ducks/subordinates';
-import OverviewPageStyled from '../styled/OverviewPageStyled';
+import OverviewPageStyled from '../styled/overviewPageStyled';
 import { AppDispatch, RootState } from '../redux/store';
 import Preloader from '../assets/images/preloader.svg';
 
@@ -31,7 +31,7 @@ const OverviewPage = () : JSX.Element => {
         <Container>
             <OverviewPageStyled.MainContainer>
                 <Row className="justify-content-center">
-                    <Col xl="6" lg="6">
+                    <Col>
                         <OverviewPageStyled.MyTittle>{paramsName.name}</OverviewPageStyled.MyTittle>
                         {employerDataSelector[0] && (
                             <OverviewPageStyled.MyDiv>
@@ -43,7 +43,7 @@ const OverviewPage = () : JSX.Element => {
                     </Col>
                 </Row>
                 <Row className="justify-content-center">
-                    <Col xl="6" lg="6">
+                    <Col>
                         <OverviewPageStyled.MyUL>
                             {employerDataSelector[1]?(
                                 Object.values(employerDataSelector[1])[0].map(

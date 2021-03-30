@@ -17,6 +17,6 @@ const reducer = (state = initialState,
 };
 
 export const setSearchedName = (searchedName: string): SearchNameAction =>
-    ({type: SET_SEARCHED_NAME, searchedName});
+    ({ type: SET_SEARCHED_NAME, searchedName });
 
 export default reducer;

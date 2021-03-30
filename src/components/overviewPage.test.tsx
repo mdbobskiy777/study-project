@@ -4,16 +4,9 @@ import { Provider } from 'react-redux';
 
 import { cleanup, render } from '@testing-library/react';
 import { act as domAct } from 'react-dom/test-utils';
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-17-updated';
 
 import {appStore} from '../redux/store';
 import OverviewPage from './OverviewPage';
-
-React.useLayoutEffect = React.useEffect;
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-configure({ adapter: new Adapter() });
 
 afterEach(cleanup);
 
