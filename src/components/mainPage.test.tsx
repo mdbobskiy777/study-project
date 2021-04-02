@@ -31,7 +31,7 @@ it('MainPage input onChange value is correct', () => {
         </BrowserRouter>
     );
 
-    const input = utils.getByRole('textbox');
+    const input = utils.getByRole('textbox') as HTMLInputElement;
                                     
     fireEvent.change(input,{ target: { value: 'S'} });
 
