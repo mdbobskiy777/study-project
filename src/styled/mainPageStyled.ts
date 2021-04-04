@@ -56,4 +56,5 @@ const StyledComponents = {
         width: ${mainPageProperties.myIMG.width};
     `
 };
+
 export default StyledComponents;

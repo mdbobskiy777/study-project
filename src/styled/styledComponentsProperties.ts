@@ -42,5 +42,4 @@ export const overviewPageProperties = {
     myTitle: {
         background: 'white'
     },
-
 };

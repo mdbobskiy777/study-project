@@ -45,4 +45,5 @@ const OverviewPageStyled = {
         width: 20%;
     `
 };
+
 export default OverviewPageStyled;

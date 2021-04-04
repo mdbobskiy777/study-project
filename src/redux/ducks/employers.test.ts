@@ -10,7 +10,7 @@ import reducer, {
 } from './employers';
 
 import { EmployersAPI } from '../../api/api';
-import {InitialState} from '../../types/employers';
+import { InitialState } from '../../types/employers';
 
 describe('actions', () => {
     const employers = [
@@ -54,16 +54,6 @@ describe('reducer', () => {
         'Lynn Haigh',
         'Nylah Riddle'
     ];
-
-    it('should return the initial state', () => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        expect(reducer(undefined,{})).toEqual(
-            {
-                employers: [],
-                isFetching:false
-            });
-    });
 
     it('should handle SET_FETCHING', () => {
 

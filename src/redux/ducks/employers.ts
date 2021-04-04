@@ -36,7 +36,6 @@ const reducer = (state = initialState,
     }
 };
 
-//action creators
 export const fetchEmployersList = ():FetchedEmployersAction => ({type: FETCHED_EMPLOYERS});
 
 export const setEmployersList = (employers: Employers | unknown):SetEmployersListAction =>
