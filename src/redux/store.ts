@@ -6,7 +6,7 @@ import { watchFetchEmployers } from './ducks/employers';
 import { watchFetchSubordinates } from './ducks/subordinates';
 
 export type RootState = ReturnType<typeof appStore.getState>;
-export type AppDispatch = typeof appStore.dispatch
+export type AppDispatch = typeof appStore.dispatch;
 
 const rootReducer = employersReducer;
 
